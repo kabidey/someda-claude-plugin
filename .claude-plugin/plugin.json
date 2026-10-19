@@ -1,8 +1,8 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "someda",
-  "displayName": "Someda — PCB from a vibe",
-  "version": "0.5.3",
+  "displayName": "Someda \u2014 PCB from a vibe",
+  "version": "0.5.4",
   "description": "Describe a circuit in conversation; get a fab-ready PCB. Claude plans the circuit as a strict JSON contract (per-net frequency, per-component power), then the compiled someda engine deterministically places, autoroutes with 50-ohm-where-needed physics, audits SI/thermal against JLCPCB's real materials and scope, verifies through kicad-cli, and exports Gerbers + drill + BOM. The honest-done contract gates every stage.",
   "author": {
     "name": "SomTronics",

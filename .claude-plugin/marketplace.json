@@ -1,7 +1,7 @@
 {
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "someda",
-  "description": "Someda — turn a circuit idea in conversation into a fab-ready PCB: deterministic placement, physics-aware autorouting, JLCPCB scope checks, kicad-cli verification, Gerber export.",
+  "description": "Someda \u2014 turn a circuit idea in conversation into a fab-ready PCB: deterministic placement, physics-aware autorouting, JLCPCB scope checks, kicad-cli verification, Gerber export.",
   "owner": {
     "name": "SomTronics",
     "email": "somtronics@users.noreply.github.com"
@@ -16,7 +16,7 @@
       "category": "hardware",
       "source": "./",
       "homepage": "https://github.com/kabidey/someda",
-      "version": "0.5.3"
+      "version": "0.5.4"
     }
   ]
 }
