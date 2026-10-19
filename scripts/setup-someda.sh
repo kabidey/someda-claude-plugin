@@ -12,7 +12,7 @@
 set -euo pipefail
 
 SOMEDA_REPO="kabidey/someda"
-SOMEDA_VERSION="${SOMEDA_VERSION:-v0.5.4}"
+SOMEDA_VERSION="${SOMEDA_VERSION:-v0.6.0}"
 INSTALL_DIR="${HOME}/.local/share/someda/bin"
 
 err() { echo "someda-setup: $*" >&2; exit 1; }
@@ -54,11 +54,26 @@ URL="https://github.com/${SOMEDA_REPO}/releases/download/${SOMEDA_VERSION}/${ASS
 TMP="$(mktemp -d)"
 trap 'rm -rf "${TMP}"' EXIT
 
+# 4. Fallback: build from source when no release asset matches
+build_from_source() {
+    command -v cargo >/dev/null 2>&1 || err "no release asset at ${URL} and cargo is not installed to build from source"
+    command -v git >/dev/null 2>&1 || err "git needed to build someda from source"
+    local ref="${SOMEDA_GIT_REF:-${SOMEDA_VERSION}}"
+    echo "Building someda from source (https://github.com/${SOMEDA_REPO} @ ${ref})..." >&2
+    git clone -q --depth 1 --branch "${ref}" "https://github.com/${SOMEDA_REPO}.git" "${TMP}/src" 2>/dev/null \
+        || git clone -q "https://github.com/${SOMEDA_REPO}.git" "${TMP}/src" \
+        || err "git clone failed"
+    (cd "${TMP}/src" && cargo build --release --quiet) || err "cargo build failed"
+    install -m 0755 "${TMP}/src/target/release/${BIN}" "${DEST}"
+    echo "${DEST}"
+    exit 0
+}
+
 echo "Downloading someda ${SOMEDA_VERSION} for ${OS}/${ARCH}..." >&2
 if command -v curl >/dev/null 2>&1; then
-    curl -fsSL -o "${TMP}/${ASSET}" "${URL}" || err "download failed: ${URL}"
+    curl -fsSL -o "${TMP}/${ASSET}" "${URL}" || build_from_source
 elif command -v wget >/dev/null 2>&1; then
-    wget -q -O "${TMP}/${ASSET}" "${URL}" || err "download failed: ${URL}"
+    wget -q -O "${TMP}/${ASSET}" "${URL}" || build_from_source
 else
     err "need curl or wget to download the someda binary"
 fi
