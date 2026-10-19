@@ -1,0 +1,22 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "someda",
+  "description": "Someda — turn a circuit idea in conversation into a fab-ready PCB: deterministic placement, physics-aware autorouting, JLCPCB scope checks, kicad-cli verification, Gerber export.",
+  "owner": {
+    "name": "SomTronics",
+    "email": "somtronics@users.noreply.github.com"
+  },
+  "plugins": [
+    {
+      "name": "someda",
+      "description": "Describe a circuit in conversation; get a fab-ready PCB. Claude plans, the compiled someda engine places/routes/audits/verifies and exports Gerbers.",
+      "author": {
+        "name": "SomTronics"
+      },
+      "category": "hardware",
+      "source": "./",
+      "homepage": "https://github.com/kabidey/someda",
+      "version": "0.5.3"
+    }
+  ]
+}
