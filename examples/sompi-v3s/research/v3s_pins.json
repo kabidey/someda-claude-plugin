@@ -1,0 +1,793 @@
+{
+ "source": [
+  "https://linux-sunxi.org/V3s (wiki page linking the datasheet)",
+  "https://linux-sunxi.org/images/2/23/Allwinner_V3s_Datasheet_V1.0.pdf (Allwinner V3s Datasheet V1.0, 2015; sha256 331d370f38dfd88d01f2c6e54ee9ebbc4e77fb199ef2895338c7ec2dee6a0055; Table 3-1/3-2/3-3, Table 9-1/9-2, Appendix pin map)",
+  "https://dl.sipeed.com/fileList/LICHEE/Zero/HDK/lichee_zero_Schematic.pdf (Sipeed Lichee Pi Zero schematic, KiCad export dated 10 09 2021; sha256 644dfda0b90b34fc8e9703cf3fc8db3848ee6d74a97a238fbe686ac41f29adce)",
+  "https://github.com/FunKey-Project/FunKey-S-Hardware (FunKey.lib V3S symbol + FunKey.net netlist)",
+  "https://github.com/aep/kicad (lib/aep.lib, AllWinner-V3s(eLQFP-128) symbol)",
+  "https://github.com/TobleMiner/OpenHomelabSwitch (lib/SoC_Allwinner.lib, Allwinner_V3S symbol)",
+  "https://github.com/TreeNewbeer/Coonix (hardware/Coonix/V3S/Allwinner.lib, V3s symbol)",
+  "https://github.com/Zepan/lichee-pi-zero (HardWare/V3S/V3s hardware design guide V1.0_20150519.pdf, Allwinner, Chinese)",
+  "https://dl.sipeed.com/fileList/LICHEE/Zero/HDK/lichee_zero_dock_Schematic.pdf (Lichee Zero Dock, sheet 3: Ethernet magnetics, LRADC keys; sha256 ed3244ac8b8b26e62dae9883e008d6fcfc574c50555a1644620ae94d4567d14b)",
+  "https://github.com/FunKey-Project/FunKey-S-Hardware/blob/master/FunKey.pretty/ELQFP-128.kicad_mod (footprint geometry)"
+ ],
+ "package": "LQFP-128",
+ "package_detail": "Allwinner eLQFP-128 (E-PAD LQFP), body 14.0 x 14.0 mm, lead-tip span 16.0 x 16.0 mm, 0.40 mm pitch, height max 1.60 mm; datasheet drawing DB128-SW1 lists exposed-pad options 3.61 / 5.72 / 8.00 / 7.75x6.60 mm REF (datasheet does not say which applies to the V3s product code DB1283C; verify EPAD size against a physical part or the reference footprint before finalising copper)",
+ "epad": {
+  "name": "EPAD",
+  "kind": "ground",
+  "domain": "GND",
+  "notes": "Exposed pad is the only digital ground of the package (Table 3-1 lists no GND pins other than AGND). Must be soldered to GND with thermal vias (FunKey footprint: 3x3 vias on a 1 mm grid). KiCad symbols from Sipeed/FunKey/aep model it as pin 129 (EGND/GND)."
+ },
+ "pins": {
+  "1": {
+   "name": "PG4",
+   "kind": "io",
+   "domain": "VCC-IO",
+   "notes": "GPIO PG4 / SDC1_D2 / PG_EINT4"
+  },
+  "2": {
+   "name": "PG3",
+   "kind": "io",
+   "domain": "VCC-IO",
+   "notes": "GPIO PG3 / SDC1_D1 / PG_EINT3"
+  },
+  "3": {
+   "name": "PG2",
+   "kind": "io",
+   "domain": "VCC-IO",
+   "notes": "GPIO PG2 / SDC1_D0 / PG_EINT2"
+  },
+  "4": {
+   "name": "PG1",
+   "kind": "io",
+   "domain": "VCC-IO",
+   "notes": "GPIO PG1 / SDC1_CMD / PG_EINT1"
+  },
+  "5": {
+   "name": "PG0",
+   "kind": "io",
+   "domain": "VCC-IO",
+   "notes": "GPIO PG0 / SDC1_CLK / PG_EINT0"
+  },
+  "6": {
+   "name": "PE24",
+   "kind": "io",
+   "domain": "VCC-PE",
+   "notes": "GPIO PE24 / LCD_D23 / UART1_CTS"
+  },
+  "7": {
+   "name": "PE23",
+   "kind": "io",
+   "domain": "VCC-PE",
+   "notes": "GPIO PE23 / LCD_D22 / UART1_RTS"
+  },
+  "8": {
+   "name": "PE22",
+   "kind": "io",
+   "domain": "VCC-PE",
+   "notes": "GPIO PE22 / CSI_SDA / TWI1_SDA / UART1_RX"
+  },
+  "9": {
+   "name": "PE21",
+   "kind": "io",
+   "domain": "VCC-PE",
+   "notes": "GPIO PE21 / CSI_SCK / TWI1_SCK / UART1_TX"
+  },
+  "10": {
+   "name": "PE20",
+   "kind": "io",
+   "domain": "VCC-PE",
+   "notes": "GPIO PE20 / CSI_FIELD / CSI_MIPI_MCLK"
+  },
+  "11": {
+   "name": "PE19",
+   "kind": "io",
+   "domain": "VCC-PE",
+   "notes": "GPIO PE19 / CSI_D15 / LCD_D21"
+  },
+  "12": {
+   "name": "VCC-PE0",
+   "kind": "power",
+   "domain": "VCC-PE",
+   "notes": "IO supply for port E (LCD/CSI parallel bus), 1.8-3.3 V"
+  },
+  "13": {
+   "name": "PE18",
+   "kind": "io",
+   "domain": "VCC-PE",
+   "notes": "GPIO PE18 / CSI_D14 / LCD_D20"
+  },
+  "14": {
+   "name": "PE17",
+   "kind": "io",
+   "domain": "VCC-PE",
+   "notes": "GPIO PE17 / CSI_D13 / LCD_D19"
+  },
+  "15": {
+   "name": "PE16",
+   "kind": "io",
+   "domain": "VCC-PE",
+   "notes": "GPIO PE16 / CSI_D12 / LCD_D18"
+  },
+  "16": {
+   "name": "PE15",
+   "kind": "io",
+   "domain": "VCC-PE",
+   "notes": "GPIO PE15 / CSI_D11 / LCD_D15"
+  },
+  "17": {
+   "name": "PE14",
+   "kind": "io",
+   "domain": "VCC-PE",
+   "notes": "GPIO PE14 / CSI_D10 / LCD_D14"
+  },
+  "18": {
+   "name": "PE13",
+   "kind": "io",
+   "domain": "VCC-PE",
+   "notes": "GPIO PE13 / CSI_D9 / LCD_D13"
+  },
+  "19": {
+   "name": "VDD-SYS3",
+   "kind": "power",
+   "domain": "VDD-SYS",
+   "notes": "System/logic core supply (typ 1.2 V)"
+  },
+  "20": {
+   "name": "VDD-CPU3",
+   "kind": "power",
+   "domain": "VDD-CPU",
+   "notes": "CPU core supply (typ 1.2 V)"
+  },
+  "21": {
+   "name": "VDD-CPU2",
+   "kind": "power",
+   "domain": "VDD-CPU",
+   "notes": "CPU core supply (typ 1.2 V)"
+  },
+  "22": {
+   "name": "PE12",
+   "kind": "io",
+   "domain": "VCC-PE",
+   "notes": "GPIO PE12 / CSI_D8 / LCD_D12"
+  },
+  "23": {
+   "name": "PE11",
+   "kind": "io",
+   "domain": "VCC-PE",
+   "notes": "GPIO PE11 / CSI_D7 / LCD_D11"
+  },
+  "24": {
+   "name": "PE10",
+   "kind": "io",
+   "domain": "VCC-PE",
+   "notes": "GPIO PE10 / CSI_D6 / LCD_D10"
+  },
+  "25": {
+   "name": "VDD-CPU1",
+   "kind": "power",
+   "domain": "VDD-CPU",
+   "notes": "CPU core supply (typ 1.2 V)"
+  },
+  "26": {
+   "name": "VDD-CPU0",
+   "kind": "power",
+   "domain": "VDD-CPU",
+   "notes": "CPU core supply (typ 1.2 V)"
+  },
+  "27": {
+   "name": "PE9",
+   "kind": "io",
+   "domain": "VCC-PE",
+   "notes": "GPIO PE9 / CSI_D5 / LCD_D7"
+  },
+  "28": {
+   "name": "PE8",
+   "kind": "io",
+   "domain": "VCC-PE",
+   "notes": "GPIO PE8 / CSI_D4 / LCD_D6"
+  },
+  "29": {
+   "name": "VCC-PE1",
+   "kind": "power",
+   "domain": "VCC-PE",
+   "notes": "IO supply for port E (LCD/CSI parallel bus), 1.8-3.3 V"
+  },
+  "30": {
+   "name": "PE7",
+   "kind": "io",
+   "domain": "VCC-PE",
+   "notes": "GPIO PE7 / CSI_D3 / LCD_D5"
+  },
+  "31": {
+   "name": "PE6",
+   "kind": "io",
+   "domain": "VCC-PE",
+   "notes": "GPIO PE6 / CSI_D2 / LCD_D4"
+  },
+  "32": {
+   "name": "PE5",
+   "kind": "io",
+   "domain": "VCC-PE",
+   "notes": "GPIO PE5 / CSI_D1 / LCD_D3"
+  },
+  "33": {
+   "name": "PE4",
+   "kind": "io",
+   "domain": "VCC-PE",
+   "notes": "GPIO PE4 / CSI_D0 / LCD_D2"
+  },
+  "34": {
+   "name": "PE3",
+   "kind": "io",
+   "domain": "VCC-PE",
+   "notes": "GPIO PE3 / CSI_VSYNC / LCD_VSYNC"
+  },
+  "35": {
+   "name": "PE2",
+   "kind": "io",
+   "domain": "VCC-PE",
+   "notes": "GPIO PE2 / CSI_HSYNC / LCD_HSYNC"
+  },
+  "36": {
+   "name": "PE1",
+   "kind": "io",
+   "domain": "VCC-PE",
+   "notes": "GPIO PE1 / CSI_MCLK / LCD_DE"
+  },
+  "37": {
+   "name": "PE0",
+   "kind": "io",
+   "domain": "VCC-PE",
+   "notes": "GPIO PE0 / CSI_PCLK / LCD_CLK"
+  },
+  "38": {
+   "name": "VDD-CPU4",
+   "kind": "power",
+   "domain": "VDD-CPU",
+   "notes": "CPU core supply (typ 1.2 V)"
+  },
+  "39": {
+   "name": "PB0",
+   "kind": "io",
+   "domain": "VCC-IO",
+   "notes": "GPIO PB0 / UART2_TX / PB_EINT0"
+  },
+  "40": {
+   "name": "PB1",
+   "kind": "io",
+   "domain": "VCC-IO",
+   "notes": "GPIO PB1 / UART2_RX / PB_EINT1"
+  },
+  "41": {
+   "name": "PB2",
+   "kind": "io",
+   "domain": "VCC-IO",
+   "notes": "GPIO PB2 / UART2_RTS / PB_EINT2"
+  },
+  "42": {
+   "name": "PB3",
+   "kind": "io",
+   "domain": "VCC-IO",
+   "notes": "GPIO PB3 / UART2_CTS / PB_EINT3"
+  },
+  "43": {
+   "name": "PB4",
+   "kind": "io",
+   "domain": "VCC-IO",
+   "notes": "GPIO PB4 / PWM0 / PB_EINT4"
+  },
+  "44": {
+   "name": "PB5",
+   "kind": "io",
+   "domain": "VCC-IO",
+   "notes": "GPIO PB5 / PWM1 / PB_EINT5"
+  },
+  "45": {
+   "name": "PB6",
+   "kind": "io",
+   "domain": "VCC-IO",
+   "notes": "GPIO PB6 / TWI0_SCK / PB_EINT6"
+  },
+  "46": {
+   "name": "PB7",
+   "kind": "io",
+   "domain": "VCC-IO",
+   "notes": "GPIO PB7 / TWI0_SDA / PB_EINT7"
+  },
+  "47": {
+   "name": "VDD-CPU5",
+   "kind": "power",
+   "domain": "VDD-CPU",
+   "notes": "CPU core supply (typ 1.2 V)"
+  },
+  "48": {
+   "name": "PB8",
+   "kind": "io",
+   "domain": "VCC-IO",
+   "notes": "GPIO PB8 / TWI1_SCK / UART0_TX / PB_EINT8"
+  },
+  "49": {
+   "name": "PB9",
+   "kind": "io",
+   "domain": "VCC-IO",
+   "notes": "GPIO PB9 / TWI1_SDA / UART0_RX / PB_EINT9"
+  },
+  "50": {
+   "name": "VCC-IO3",
+   "kind": "power",
+   "domain": "VCC-IO",
+   "notes": "IO supply for ports B, C, F, G (1.8-3.3 V); datasheet does not state which index feeds which port (aep.lib annotation VCC-IO0=PB/1=PC/2=PF/3=PG is unsourced and conflicts with pin-map adjacency); treat VCC-IO0..3 as one rail"
+  },
+  "51": {
+   "name": "VDD-CPU6",
+   "kind": "power",
+   "domain": "VDD-CPU",
+   "notes": "CPU core supply (typ 1.2 V)"
+  },
+  "52": {
+   "name": "PC0",
+   "kind": "io",
+   "domain": "VCC-IO",
+   "notes": "GPIO PC0 / SDC2_CLK / SPI0_MISO"
+  },
+  "53": {
+   "name": "PC1",
+   "kind": "io",
+   "domain": "VCC-IO",
+   "notes": "GPIO PC1 / SDC2_CMD / SPI0_CLK"
+  },
+  "54": {
+   "name": "PC2",
+   "kind": "io",
+   "domain": "VCC-IO",
+   "notes": "GPIO PC2 / SDC2_RST / SPI0_CS"
+  },
+  "55": {
+   "name": "PC3",
+   "kind": "io",
+   "domain": "VCC-IO",
+   "notes": "GPIO PC3 / SDC2_D0 / SPI0_MOSI"
+  },
+  "56": {
+   "name": "VDD-CPU7",
+   "kind": "power",
+   "domain": "VDD-CPU",
+   "notes": "CPU core supply (typ 1.2 V)"
+  },
+  "57": {
+   "name": "VCC-IO2",
+   "kind": "power",
+   "domain": "VCC-IO",
+   "notes": "IO supply for ports B, C, F, G (1.8-3.3 V); datasheet does not state which index feeds which port (aep.lib annotation VCC-IO0=PB/1=PC/2=PF/3=PG is unsourced and conflicts with pin-map adjacency); treat VCC-IO0..3 as one rail"
+  },
+  "58": {
+   "name": "VDD-SYS4",
+   "kind": "power",
+   "domain": "VDD-SYS",
+   "notes": "System/logic core supply (typ 1.2 V)"
+  },
+  "59": {
+   "name": "VCC-DRAM8",
+   "kind": "power",
+   "domain": "VCC-DRAM",
+   "notes": "DDR2 supply (1.8 V) for the on-package 512 Mbit DDR2 die"
+  },
+  "60": {
+   "name": "VCC-DRAM9",
+   "kind": "power",
+   "domain": "VCC-DRAM",
+   "notes": "DDR2 supply (1.8 V) for the on-package 512 Mbit DDR2 die"
+  },
+  "61": {
+   "name": "VCC-DRAM10",
+   "kind": "power",
+   "domain": "VCC-DRAM",
+   "notes": "DDR2 supply (1.8 V) for the on-package 512 Mbit DDR2 die"
+  },
+  "62": {
+   "name": "VCC-DRAM11",
+   "kind": "power",
+   "domain": "VCC-DRAM",
+   "notes": "DDR2 supply (1.8 V) for the on-package 512 Mbit DDR2 die"
+  },
+  "63": {
+   "name": "SVREF1",
+   "kind": "analog",
+   "domain": "VCC-DRAM",
+   "notes": "DDR2 reference voltage input = VCC-DRAM/2 (external resistor divider + cap on Lichee Zero / FunKey)"
+  },
+  "64": {
+   "name": "VDD-SYS5",
+   "kind": "power",
+   "domain": "VDD-SYS",
+   "notes": "System/logic core supply (typ 1.2 V)"
+  },
+  "65": {
+   "name": "VCC-DRAM0",
+   "kind": "power",
+   "domain": "VCC-DRAM",
+   "notes": "DDR2 supply (1.8 V) for the on-package 512 Mbit DDR2 die"
+  },
+  "66": {
+   "name": "VCC-DRAM1",
+   "kind": "power",
+   "domain": "VCC-DRAM",
+   "notes": "DDR2 supply (1.8 V) for the on-package 512 Mbit DDR2 die"
+  },
+  "67": {
+   "name": "VCC-DRAM2",
+   "kind": "power",
+   "domain": "VCC-DRAM",
+   "notes": "DDR2 supply (1.8 V) for the on-package 512 Mbit DDR2 die"
+  },
+  "68": {
+   "name": "VCC-DRAM3",
+   "kind": "power",
+   "domain": "VCC-DRAM",
+   "notes": "DDR2 supply (1.8 V) for the on-package 512 Mbit DDR2 die"
+  },
+  "69": {
+   "name": "VCC-DRAM4",
+   "kind": "power",
+   "domain": "VCC-DRAM",
+   "notes": "DDR2 supply (1.8 V) for the on-package 512 Mbit DDR2 die"
+  },
+  "70": {
+   "name": "VCC-DRAM5",
+   "kind": "power",
+   "domain": "VCC-DRAM",
+   "notes": "DDR2 supply (1.8 V) for the on-package 512 Mbit DDR2 die"
+  },
+  "71": {
+   "name": "SVREF0",
+   "kind": "analog",
+   "domain": "VCC-DRAM",
+   "notes": "DDR2 reference voltage input = VCC-DRAM/2 (external resistor divider + cap on Lichee Zero / FunKey)"
+  },
+  "72": {
+   "name": "VCC-DRAM6",
+   "kind": "power",
+   "domain": "VCC-DRAM",
+   "notes": "DDR2 supply (1.8 V) for the on-package 512 Mbit DDR2 die"
+  },
+  "73": {
+   "name": "SZQ",
+   "kind": "analog",
+   "domain": "VCC-DRAM",
+   "notes": "DDR2 ZQ calibration: 240 ohm 1% to GND, placed close to the pin"
+  },
+  "74": {
+   "name": "X24MOUT",
+   "kind": "clock",
+   "domain": "VCC-PLL",
+   "notes": "24 MHz crystal output (oscillator supply domain not stated explicitly in datasheet)"
+  },
+  "75": {
+   "name": "X24MIN",
+   "kind": "clock",
+   "domain": "VCC-PLL",
+   "notes": "24 MHz crystal input (oscillator supply domain not stated explicitly in datasheet)"
+  },
+  "76": {
+   "name": "VCC-PLL",
+   "kind": "power",
+   "domain": "VCC-PLL",
+   "notes": "PLL supply, typ 3.0 V"
+  },
+  "77": {
+   "name": "EPHY_LINK_LED",
+   "kind": "ethernet",
+   "domain": "EPHY_VCC",
+   "notes": "PHY link LED output (output supply domain not stated in datasheet; EPHY_VCC assumed)"
+  },
+  "78": {
+   "name": "EPHY_SPD_LED",
+   "kind": "ethernet",
+   "domain": "EPHY_VCC",
+   "notes": "PHY 10/100 speed LED output (output supply domain not stated in datasheet; EPHY_VCC assumed)"
+  },
+  "79": {
+   "name": "VCC-DRAM7",
+   "kind": "power",
+   "domain": "VCC-DRAM",
+   "notes": "DDR2 supply (1.8 V) for the on-package 512 Mbit DDR2 die"
+  },
+  "80": {
+   "name": "VDD-SYS0",
+   "kind": "power",
+   "domain": "VDD-SYS",
+   "notes": "System/logic core supply (typ 1.2 V)"
+  },
+  "81": {
+   "name": "MCSI-D0P",
+   "kind": "analog",
+   "domain": "VCC-MCSI",
+   "notes": "MIPI CSI-2 data lane 0 +"
+  },
+  "82": {
+   "name": "MCSI-D0N",
+   "kind": "analog",
+   "domain": "VCC-MCSI",
+   "notes": "MIPI CSI-2 data lane 0 -"
+  },
+  "83": {
+   "name": "MCSI-D1P",
+   "kind": "analog",
+   "domain": "VCC-MCSI",
+   "notes": "MIPI CSI-2 data lane 1 +"
+  },
+  "84": {
+   "name": "MCSI-D1N",
+   "kind": "analog",
+   "domain": "VCC-MCSI",
+   "notes": "MIPI CSI-2 data lane 1 -"
+  },
+  "85": {
+   "name": "VCC-MCSI",
+   "kind": "power",
+   "domain": "VCC-MCSI",
+   "notes": "MIPI-CSI receiver supply, typ 3.3 V"
+  },
+  "86": {
+   "name": "MCSI-CKP",
+   "kind": "analog",
+   "domain": "VCC-MCSI",
+   "notes": "MIPI CSI-2 clock +"
+  },
+  "87": {
+   "name": "MCSI-CKN",
+   "kind": "analog",
+   "domain": "VCC-MCSI",
+   "notes": "MIPI CSI-2 clock -"
+  },
+  "88": {
+   "name": "EPHY_VDD",
+   "kind": "power",
+   "domain": "EPHY_VDD",
+   "notes": "Ethernet PHY core supply, 1.0-1.2 V (typ 1.1 V; boards tie to the 1.2/1.25 V core rail)"
+  },
+  "89": {
+   "name": "EPHY_RXN",
+   "kind": "ethernet",
+   "domain": "EPHY_VCC",
+   "notes": "Internal 10/100 PHY receive -"
+  },
+  "90": {
+   "name": "EPHY_RXP",
+   "kind": "ethernet",
+   "domain": "EPHY_VCC",
+   "notes": "Internal 10/100 PHY receive +"
+  },
+  "91": {
+   "name": "EPHY_TXN",
+   "kind": "ethernet",
+   "domain": "EPHY_VCC",
+   "notes": "Internal 10/100 PHY transmit -"
+  },
+  "92": {
+   "name": "EPHY_TXP",
+   "kind": "ethernet",
+   "domain": "EPHY_VCC",
+   "notes": "Internal 10/100 PHY transmit +"
+  },
+  "93": {
+   "name": "EPHY_VCC",
+   "kind": "power",
+   "domain": "EPHY_VCC",
+   "notes": "Ethernet PHY analog supply, 2.8-3.6 V (typ 3.3 V)"
+  },
+  "94": {
+   "name": "EPHY_RTX",
+   "kind": "ethernet",
+   "domain": "EPHY_VCC",
+   "notes": "PHY bias resistor to GND (Lichee Zero R2 printed as 6K-1%)"
+  },
+  "95": {
+   "name": "X32KOUT",
+   "kind": "clock",
+   "domain": "VCC-RTC",
+   "notes": "32.768 kHz crystal output (RTC domain)"
+  },
+  "96": {
+   "name": "X32KIN",
+   "kind": "clock",
+   "domain": "VCC-RTC",
+   "notes": "32.768 kHz crystal input (RTC domain)"
+  },
+  "97": {
+   "name": "RTC-VIO",
+   "kind": "power",
+   "domain": "VCC-RTC",
+   "notes": "Internal RTC LDO output bypass: decoupling cap to GND only, do not drive"
+  },
+  "98": {
+   "name": "VCC-RTC",
+   "kind": "power",
+   "domain": "VCC-RTC",
+   "notes": "RTC / always-on supply, typ 3.3 V"
+  },
+  "99": {
+   "name": "RESET",
+   "kind": "reset",
+   "domain": "n/a",
+   "notes": "Active-low reset input, no internal pull; Lichee Zero: 47k to 3V3 + 1uF + button; design guide: 10nF close to SoC (input supply domain not stated in datasheet)"
+  },
+  "100": {
+   "name": "PF6",
+   "kind": "io",
+   "domain": "VCC-IO",
+   "notes": "GPIO PF6 / "
+  },
+  "101": {
+   "name": "PF5",
+   "kind": "io",
+   "domain": "VCC-IO",
+   "notes": "GPIO PF5 / SDC0_D2 / JTAG_CK (default at reset: JTAG_CK)"
+  },
+  "102": {
+   "name": "PF4",
+   "kind": "io",
+   "domain": "VCC-IO",
+   "notes": "GPIO PF4 / SDC0_D3 / UART0_RX"
+  },
+  "103": {
+   "name": "PF3",
+   "kind": "io",
+   "domain": "VCC-IO",
+   "notes": "GPIO PF3 / SDC0_CMD / JTAG_DO (default at reset: JTAG_DO)"
+  },
+  "104": {
+   "name": "VCC-IO0",
+   "kind": "power",
+   "domain": "VCC-IO",
+   "notes": "IO supply for ports B, C, F, G (1.8-3.3 V); datasheet does not state which index feeds which port (aep.lib annotation VCC-IO0=PB/1=PC/2=PF/3=PG is unsourced and conflicts with pin-map adjacency); treat VCC-IO0..3 as one rail"
+  },
+  "105": {
+   "name": "PF2",
+   "kind": "io",
+   "domain": "VCC-IO",
+   "notes": "GPIO PF2 / SDC0_CLK / UART0_TX"
+  },
+  "106": {
+   "name": "PF1",
+   "kind": "io",
+   "domain": "VCC-IO",
+   "notes": "GPIO PF1 / SDC0_D0 / JTAG_DI (default at reset: JTAG_DI)"
+  },
+  "107": {
+   "name": "PF0",
+   "kind": "io",
+   "domain": "VCC-IO",
+   "notes": "GPIO PF0 / SDC0_D1 / JTAG_MS (default at reset: JTAG_MS)"
+  },
+  "108": {
+   "name": "VDD-SYS1",
+   "kind": "power",
+   "domain": "VDD-SYS",
+   "notes": "System/logic core supply (typ 1.2 V)"
+  },
+  "109": {
+   "name": "VCC-USB",
+   "kind": "power",
+   "domain": "VCC-USB",
+   "notes": "USB PHY supply, 3.0-3.45 V (typ 3.3 V)"
+  },
+  "110": {
+   "name": "USB-DM",
+   "kind": "usb",
+   "domain": "VCC-USB",
+   "notes": "USB 2.0 OTG D- (90 ohm differential)"
+  },
+  "111": {
+   "name": "USB-DP",
+   "kind": "usb",
+   "domain": "VCC-USB",
+   "notes": "USB 2.0 OTG D+ (90 ohm differential)"
+  },
+  "112": {
+   "name": "LRADC0",
+   "kind": "analog",
+   "domain": "AVCC",
+   "notes": "6-bit key ADC input, 0-2.0 V range; Lichee Zero: 100k 1% pull-up to AVCC + 1 nF"
+  },
+  "113": {
+   "name": "MICIN1P",
+   "kind": "analog",
+   "domain": "AVCC",
+   "notes": "Microphone differential input +"
+  },
+  "114": {
+   "name": "MICIN1N",
+   "kind": "analog",
+   "domain": "AVCC",
+   "notes": "Microphone differential input -"
+  },
+  "115": {
+   "name": "AVCC",
+   "kind": "power",
+   "domain": "AVCC",
+   "notes": "Audio codec / analog supply, 2.8-3.3 V (typ 3.0 V)"
+  },
+  "116": {
+   "name": "AGND",
+   "kind": "ground",
+   "domain": "AGND",
+   "notes": "Analog ground for codec; single-point (0R) to main GND"
+  },
+  "117": {
+   "name": "VRA1",
+   "kind": "analog",
+   "domain": "AVCC",
+   "notes": "Codec internal reference voltage output: decoupling cap to AGND only (value per reference design, do not change)"
+  },
+  "118": {
+   "name": "VRA2",
+   "kind": "analog",
+   "domain": "AVCC",
+   "notes": "Codec internal reference voltage output: decoupling cap to AGND only (value per reference design, do not change)"
+  },
+  "119": {
+   "name": "HBIAS",
+   "kind": "analog",
+   "domain": "AVCC",
+   "notes": "Microphone bias output"
+  },
+  "120": {
+   "name": "HPOUTR",
+   "kind": "analog",
+   "domain": "HPVCCIN",
+   "notes": "Headphone output right"
+  },
+  "121": {
+   "name": "HPOUTL",
+   "kind": "analog",
+   "domain": "HPVCCIN",
+   "notes": "Headphone output left"
+  },
+  "122": {
+   "name": "HPVCCIN",
+   "kind": "power",
+   "domain": "HPVCCIN",
+   "notes": "Headphone amplifier supply input (3.3 V on Lichee Zero/FunKey)"
+  },
+  "123": {
+   "name": "HPVCCBP",
+   "kind": "analog",
+   "domain": "HPVCCIN",
+   "notes": "Headphone amplifier supply bypass: cap to GND"
+  },
+  "124": {
+   "name": "HPCOMFB",
+   "kind": "analog",
+   "domain": "HPVCCIN",
+   "notes": "Headphone common feedback input"
+  },
+  "125": {
+   "name": "HPCOM",
+   "kind": "analog",
+   "domain": "HPVCCIN",
+   "notes": "Headphone common/virtual-ground output"
+  },
+  "126": {
+   "name": "VDD-SYS2",
+   "kind": "power",
+   "domain": "VDD-SYS",
+   "notes": "System/logic core supply (typ 1.2 V)"
+  },
+  "127": {
+   "name": "VCC-IO1",
+   "kind": "power",
+   "domain": "VCC-IO",
+   "notes": "IO supply for ports B, C, F, G (1.8-3.3 V); datasheet does not state which index feeds which port (aep.lib annotation VCC-IO0=PB/1=PC/2=PF/3=PG is unsourced and conflicts with pin-map adjacency); treat VCC-IO0..3 as one rail"
+  },
+  "128": {
+   "name": "PG5",
+   "kind": "io",
+   "domain": "VCC-IO",
+   "notes": "GPIO PG5 / SDC1_D3 / PG_EINT5"
+  }
+ },
+ "cross_check": "Primary source: Allwinner V3s Datasheet V1.0 Table 3-1 (pin characteristics, ball# + name) parsed programmatically, 128/128 pins, no gaps, no duplicates; visually checked against the datasheet Appendix pin map (p.419, top view, pin 1 = PG4, counter-clockwise: 1-32 left, 33-64 bottom, 65-96 right, 97-128 top, centre EPAD). Independent cross-checks of pin number vs primary pin name: Sipeed Lichee Pi Zero schematic (lichee_zero_Schematic.pdf, KiCad 5.1.6 export, sheet zero_CPU-SchDoc) symbol 'V3S-eLQFP128': 127/128 match (differences: pin 62 ds=VCC-DRAM11 vs VCC-DARM11; all are spelling typos, pin numbers agree); aep/kicad aep.lib symbol 'AllWinner-V3s(eLQFP-128)': 128/128 match; TobleMiner/OpenHomelabSwitch SoC_Allwinner.lib symbol 'Allwinner_V3S': 127/128 match (differences: pin 107 ds=PF0 vs PF0MS/SDC0_D1/JTAG_MS; all are spelling typos, pin numbers agree); TreeNewbeer/Coonix Allwinner.lib symbol 'V3s': 127/128 match (differences: pin 89 ds=EPHY_RXN vs EPHY-RTN; all are spelling typos, pin numbers agree); FunKey-Project/FunKey-S-Hardware FunKey.lib symbol 'V3S': 128/128 match. Note on independence: the Sipeed, FunKey and Coonix symbols share spelling conventions (SPI_MISO, JTAG_CK1, EGND) and are probably one lineage; aep and TobleMiner are separate transcriptions, so there are three independent symbol lineages plus the datasheet. FunKey-S production netlist (FunKey.net, ref U3) additionally confirms the power-rail assignment: pins 59-62,65-70,72,79 on +1V8, 19-21,25,26,38,47,51,56,58,64,80,88,108,126 on +1V25, 76 and 115 on +3V0, 12,29,50,57,85,93,104,109,122,127 on +3V3, 98 on +3V3_AO, 110/111 USB_N/P, 74/75 X24MOUT/X24MIN, 95 X32KOUT, 99 ~RESET, 100-107 SDC0/PF6, 63/71 SVREF, 116 AGND=GND."
+}

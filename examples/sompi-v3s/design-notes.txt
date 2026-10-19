@@ -1,0 +1,11 @@
+Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12: opening (0.0, 1.0) -> top_edge with rotation 180
+USB D+/D- are a 90 ohm differential pair routed single-ended by this engine (no pair routing)
+Connector_RJ:RJ45_Hanrun_HR911105A_Horizontal: opening (0.0, 1.0) -> right_edge with rotation 90
+RJ45 LED pins 9/10 and 11/12 assumed anode/cathode order; verify against the HR911105A drawing
+Ethernet TX/RX are 100 ohm differential pairs routed single-ended by this engine
+Connector_Card:microSD_HC_Hirose_DM3AT-SF-PEJM5: opening (0.0, 1.0) -> top_edge with rotation 180
+Connector_FFC-FPC:Hirose_FH12-40S-0.5SH_1x40-1MP_P0.50mm_Horizontal: opening (0.0, 1.0) -> left_edge with rotation 270
+LCD connector uses the common 40-pin 0.5 mm RGB TFT pinout (LEDK/LEDA/GND/VDD, R0-7, G0-7, B0-7, GND, CLK, DISP, HSYNC, VSYNC, DE, NC, GND, touch); LSBs left open
+Connector_FFC-FPC:Hirose_FH12-24S-0.5SH_1x24-1MP_P0.50mm_Horizontal: opening (0.0, 1.0) -> right_edge with rotation 90
+MIPI CSI-2 lanes are 100 ohm differential pairs routed single-ended by this engine
+Connector_Audio:Jack_3.5mm_CUI_SJ-3523-SMT_Horizontal: opening (1.0, 0.0) -> top_edge with rotation 90

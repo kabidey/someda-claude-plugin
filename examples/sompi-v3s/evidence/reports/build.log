@@ -1,0 +1,374 @@
+─── Stage 1: Planning circuit ───
+  (plan injected from /root/pcb/sompi/board/plan.json — SOMEDA_PLAN_FILE)
+─── Stage 2: Generating KiCad project files ───
+  footprint    U1 SomPi:eLQFP-128_14x14mm_P0.4mm_EP5.72x5.72mm_ThermalVias 138 pads, courtyard 17.3x17.3mm
+  footprint    C1 Capacitor_SMD:C_0402_1005Metric                         2 pads, courtyard 1.8x0.9mm
+  footprint    C2 Capacitor_SMD:C_0402_1005Metric                         2 pads, courtyard 1.8x0.9mm
+  footprint    C3 Capacitor_SMD:C_0402_1005Metric                         2 pads, courtyard 1.8x0.9mm
+  footprint    C4 Capacitor_SMD:C_0402_1005Metric                         2 pads, courtyard 1.8x0.9mm
+  footprint    C5 Capacitor_SMD:C_0402_1005Metric                         2 pads, courtyard 1.8x0.9mm
+  footprint    C6 Capacitor_SMD:C_0402_1005Metric                         2 pads, courtyard 1.8x0.9mm
+  footprint    C7 Capacitor_SMD:C_0402_1005Metric                         2 pads, courtyard 1.8x0.9mm
+  footprint    C8 Capacitor_SMD:C_0603_1608Metric                         2 pads, courtyard 3.0x1.5mm
+  footprint    C9 Capacitor_SMD:C_0402_1005Metric                         2 pads, courtyard 1.8x0.9mm
+  footprint   C10 Capacitor_SMD:C_0402_1005Metric                         2 pads, courtyard 1.8x0.9mm
+  footprint   C11 Capacitor_SMD:C_0402_1005Metric                         2 pads, courtyard 1.8x0.9mm
+  footprint   C12 Capacitor_SMD:C_0402_1005Metric                         2 pads, courtyard 1.8x0.9mm
+  footprint   C13 Capacitor_SMD:C_0402_1005Metric                         2 pads, courtyard 1.8x0.9mm
+  footprint   C14 Capacitor_SMD:C_0402_1005Metric                         2 pads, courtyard 1.8x0.9mm
+  footprint   C15 Capacitor_SMD:C_0603_1608Metric                         2 pads, courtyard 3.0x1.5mm
+  footprint   C16 Capacitor_SMD:C_0402_1005Metric                         2 pads, courtyard 1.8x0.9mm
+  footprint   C17 Capacitor_SMD:C_0402_1005Metric                         2 pads, courtyard 1.8x0.9mm
+  footprint   C18 Capacitor_SMD:C_0402_1005Metric                         2 pads, courtyard 1.8x0.9mm
+  footprint   C19 Capacitor_SMD:C_0402_1005Metric                         2 pads, courtyard 1.8x0.9mm
+  footprint   C20 Capacitor_SMD:C_0402_1005Metric                         2 pads, courtyard 1.8x0.9mm
+  footprint   C21 Capacitor_SMD:C_0402_1005Metric                         2 pads, courtyard 1.8x0.9mm
+  footprint   C22 Capacitor_SMD:C_0402_1005Metric                         2 pads, courtyard 1.8x0.9mm
+  footprint   C23 Capacitor_SMD:C_0603_1608Metric                         2 pads, courtyard 3.0x1.5mm
+  footprint   C24 Capacitor_SMD:C_0402_1005Metric                         2 pads, courtyard 1.8x0.9mm
+  footprint   C25 Capacitor_SMD:C_0402_1005Metric                         2 pads, courtyard 1.8x0.9mm
+  footprint   C26 Capacitor_SMD:C_0603_1608Metric                         2 pads, courtyard 3.0x1.5mm
+  footprint   C27 Capacitor_SMD:C_0603_1608Metric                         2 pads, courtyard 3.0x1.5mm
+  footprint   C28 Capacitor_SMD:C_0603_1608Metric                         2 pads, courtyard 3.0x1.5mm
+  footprint   C29 Capacitor_SMD:C_0402_1005Metric                         2 pads, courtyard 1.8x0.9mm
+  footprint    R1 Resistor_SMD:R_0402_1005Metric                          2 pads, courtyard 1.9x0.9mm
+  footprint    R2 Resistor_SMD:R_0402_1005Metric                          2 pads, courtyard 1.9x0.9mm
+  footprint   C30 Capacitor_SMD:C_0402_1005Metric                         2 pads, courtyard 1.8x0.9mm
+  footprint    R3 Resistor_SMD:R_0402_1005Metric                          2 pads, courtyard 1.9x0.9mm
+  footprint    R4 Resistor_SMD:R_0402_1005Metric                          2 pads, courtyard 1.9x0.9mm
+  footprint   C31 Capacitor_SMD:C_0402_1005Metric                         2 pads, courtyard 1.8x0.9mm
+  footprint    R5 Resistor_SMD:R_0402_1005Metric                          2 pads, courtyard 1.9x0.9mm
+  footprint   C32 Capacitor_SMD:C_0402_1005Metric                         2 pads, courtyard 1.8x0.9mm
+  footprint   C33 Capacitor_SMD:C_0603_1608Metric                         2 pads, courtyard 3.0x1.5mm
+  footprint    R6 Resistor_SMD:R_0402_1005Metric                          2 pads, courtyard 1.9x0.9mm
+  footprint    R7 Resistor_SMD:R_0603_1608Metric                          2 pads, courtyard 3.0x1.5mm
+  footprint    R8 Resistor_SMD:R_0402_1005Metric                          2 pads, courtyard 1.9x0.9mm
+  footprint    Y1 Crystal:Crystal_SMD_3225-4Pin_3.2x2.5mm                 4 pads, courtyard 4.2x3.5mm
+  footprint   C34 Capacitor_SMD:C_0402_1005Metric                         2 pads, courtyard 1.8x0.9mm
+  footprint   C35 Capacitor_SMD:C_0402_1005Metric                         2 pads, courtyard 1.8x0.9mm
+  footprint    Y2 Crystal:Crystal_SMD_3215-2Pin_3.2x1.5mm                 2 pads, courtyard 4.0x2.3mm
+  footprint   C36 Capacitor_SMD:C_0402_1005Metric                         2 pads, courtyard 1.8x0.9mm
+  footprint   C37 Capacitor_SMD:C_0402_1005Metric                         2 pads, courtyard 1.8x0.9mm
+  footprint    R9 Resistor_SMD:R_0402_1005Metric                          2 pads, courtyard 1.9x0.9mm
+  footprint   R10 Resistor_SMD:R_0402_1005Metric                          2 pads, courtyard 1.9x0.9mm
+  footprint   C38 Capacitor_SMD:C_0402_1005Metric                         2 pads, courtyard 1.8x0.9mm
+  footprint   SW1 Button_Switch_SMD:SW_SPST_PTS645Sx43SMTR92              4 pads, courtyard 10.1x6.8mm
+  footprint   R11 Resistor_SMD:R_0402_1005Metric                          2 pads, courtyard 1.9x0.9mm
+  footprint   C39 Capacitor_SMD:C_0402_1005Metric                         2 pads, courtyard 1.8x0.9mm
+  footprint   SW2 Button_Switch_SMD:SW_SPST_PTS645Sx43SMTR92              4 pads, courtyard 10.1x6.8mm
+  footprint   R12 Resistor_SMD:R_0402_1005Metric                          2 pads, courtyard 1.9x0.9mm
+  footprint    D1 LED_SMD:LED_0603_1608Metric                             2 pads, courtyard 3.0x1.5mm
+  footprint   R13 Resistor_SMD:R_0402_1005Metric                          2 pads, courtyard 1.9x0.9mm
+  footprint    D2 LED_SMD:LED_0603_1608Metric                             2 pads, courtyard 3.0x1.5mm
+  footprint   R14 Resistor_SMD:R_0402_1005Metric                          2 pads, courtyard 1.9x0.9mm
+  footprint    J1 Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12       22 pads, courtyard 10.6x9.4mm
+  footprint   R15 Resistor_SMD:R_0402_1005Metric                          2 pads, courtyard 1.9x0.9mm
+  footprint   R16 Resistor_SMD:R_0402_1005Metric                          2 pads, courtyard 1.9x0.9mm
+  footprint    F1 Fuse:Fuse_1206_3216Metric                               2 pads, courtyard 4.6x2.3mm
+  footprint   C40 Capacitor_SMD:C_0805_2012Metric                         2 pads, courtyard 3.4x2.0mm
+  footprint    U8 Package_TO_SOT_SMD:SOT-23-6                             6 pads, courtyard 4.1x3.4mm
+  footprint    U2 Package_TO_SOT_SMD:SOT-23-6                             6 pads, courtyard 4.1x3.4mm
+  footprint   C41 Capacitor_SMD:C_0402_1005Metric                         2 pads, courtyard 1.8x0.9mm
+  footprint    L1 Inductor_SMD:L_Taiyo-Yuden_NR-40xx                      2 pads, courtyard 4.5x4.5mm
+  footprint   C42 Capacitor_SMD:C_0805_2012Metric                         2 pads, courtyard 3.4x2.0mm
+  footprint   C43 Capacitor_SMD:C_0805_2012Metric                         2 pads, courtyard 3.4x2.0mm
+  footprint   C44 Capacitor_SMD:C_0805_2012Metric                         2 pads, courtyard 3.4x2.0mm
+  footprint   R17 Resistor_SMD:R_0402_1005Metric                          2 pads, courtyard 1.9x0.9mm
+  footprint   R18 Resistor_SMD:R_0402_1005Metric                          2 pads, courtyard 1.9x0.9mm
+  footprint    U3 Package_TO_SOT_SMD:SOT-23-6                             6 pads, courtyard 4.1x3.4mm
+  footprint   C45 Capacitor_SMD:C_0402_1005Metric                         2 pads, courtyard 1.8x0.9mm
+  footprint    L2 Inductor_SMD:L_Taiyo-Yuden_NR-40xx                      2 pads, courtyard 4.5x4.5mm
+  footprint   C46 Capacitor_SMD:C_0805_2012Metric                         2 pads, courtyard 3.4x2.0mm
+  footprint   C47 Capacitor_SMD:C_0805_2012Metric                         2 pads, courtyard 3.4x2.0mm
+  footprint   C48 Capacitor_SMD:C_0805_2012Metric                         2 pads, courtyard 3.4x2.0mm
+  footprint   R19 Resistor_SMD:R_0402_1005Metric                          2 pads, courtyard 1.9x0.9mm
+  footprint   R20 Resistor_SMD:R_0402_1005Metric                          2 pads, courtyard 1.9x0.9mm
+  footprint    U4 Package_TO_SOT_SMD:SOT-23-5                             5 pads, courtyard 4.1x3.4mm
+  footprint   C49 Capacitor_SMD:C_0603_1608Metric                         2 pads, courtyard 3.0x1.5mm
+  footprint   C50 Capacitor_SMD:C_0603_1608Metric                         2 pads, courtyard 3.0x1.5mm
+  footprint    U5 Package_TO_SOT_SMD:SOT-23                               3 pads, courtyard 3.9x3.4mm
+  footprint   C51 Capacitor_SMD:C_0603_1608Metric                         2 pads, courtyard 3.0x1.5mm
+  footprint   C52 Capacitor_SMD:C_0603_1608Metric                         2 pads, courtyard 3.0x1.5mm
+  footprint    J2 Connector_RJ:RJ45_Hanrun_HR911105A_Horizontal           16 pads, courtyard 19.0x22.3mm
+  footprint    L3 Inductor_SMD:L_0805_2012Metric                          2 pads, courtyard 3.5x1.7mm
+  footprint   C53 Capacitor_SMD:C_0402_1005Metric                         2 pads, courtyard 1.8x0.9mm
+  footprint   C54 Capacitor_SMD:C_0402_1005Metric                         2 pads, courtyard 1.8x0.9mm
+  footprint   R21 Resistor_SMD:R_0402_1005Metric                          2 pads, courtyard 1.9x0.9mm
+  footprint   R22 Resistor_SMD:R_0402_1005Metric                          2 pads, courtyard 1.9x0.9mm
+  footprint   R23 Resistor_SMD:R_0402_1005Metric                          2 pads, courtyard 1.9x0.9mm
+  footprint   R24 Resistor_SMD:R_0402_1005Metric                          2 pads, courtyard 1.9x0.9mm
+  footprint   R25 Resistor_SMD:R_0402_1005Metric                          2 pads, courtyard 1.9x0.9mm
+  footprint   R26 Resistor_SMD:R_0402_1005Metric                          2 pads, courtyard 1.9x0.9mm
+  footprint    J3 Connector_Card:microSD_HC_Hirose_DM3AT-SF-PEJM5         14 pads, courtyard 15.7x17.7mm
+  footprint   R27 Resistor_SMD:R_0402_1005Metric                          2 pads, courtyard 1.9x0.9mm
+  footprint   R28 Resistor_SMD:R_0402_1005Metric                          2 pads, courtyard 1.9x0.9mm
+  footprint   R29 Resistor_SMD:R_0402_1005Metric                          2 pads, courtyard 1.9x0.9mm
+  footprint   R30 Resistor_SMD:R_0402_1005Metric                          2 pads, courtyard 1.9x0.9mm
+  footprint   R31 Resistor_SMD:R_0402_1005Metric                          2 pads, courtyard 1.9x0.9mm
+  footprint   R32 Resistor_SMD:R_0402_1005Metric                          2 pads, courtyard 1.9x0.9mm
+  footprint   C55 Capacitor_SMD:C_0402_1005Metric                         2 pads, courtyard 1.8x0.9mm
+  footprint   R33 Resistor_SMD:R_0402_1005Metric                          2 pads, courtyard 1.9x0.9mm
+  footprint    U6 Package_SO:SOIC-8_3.9x4.9mm_P1.27mm                     8 pads, courtyard 7.4x5.4mm
+  footprint   C56 Capacitor_SMD:C_0402_1005Metric                         2 pads, courtyard 1.8x0.9mm
+  footprint    J4 Connector_FFC-FPC:Hirose_FH12-40S-0.5SH_1x40-1MP_P0.50mm_Horizontal 42 pads, courtyard 26.1x7.9mm
+  footprint   R34 Resistor_SMD:R_0402_1005Metric                          2 pads, courtyard 1.9x0.9mm
+  footprint    Q1 Package_TO_SOT_SMD:SOT-23                               3 pads, courtyard 3.9x3.4mm
+  footprint   R35 Resistor_SMD:R_0402_1005Metric                          2 pads, courtyard 1.9x0.9mm
+  footprint   R36 Resistor_SMD:R_0402_1005Metric                          2 pads, courtyard 1.9x0.9mm
+  footprint    J5 Connector_FFC-FPC:Hirose_FH12-24S-0.5SH_1x24-1MP_P0.50mm_Horizontal 26 pads, courtyard 18.1x7.9mm
+  footprint   R37 Resistor_SMD:R_0402_1005Metric                          2 pads, courtyard 1.9x0.9mm
+  footprint   R38 Resistor_SMD:R_0402_1005Metric                          2 pads, courtyard 1.9x0.9mm
+  footprint   R39 Resistor_SMD:R_0402_1005Metric                          2 pads, courtyard 1.9x0.9mm
+  footprint   C57 Capacitor_SMD:C_0402_1005Metric                         2 pads, courtyard 1.8x0.9mm
+  footprint   C58 Capacitor_SMD:C_0402_1005Metric                         2 pads, courtyard 1.8x0.9mm
+  footprint    J6 Connector_Audio:Jack_3.5mm_CUI_SJ-3523-SMT_Horizontal   5 pads, courtyard 11.2x18.0mm
+  footprint   R40 Resistor_SMD:R_0402_1005Metric                          2 pads, courtyard 1.9x0.9mm
+  footprint   R41 Resistor_SMD:R_0402_1005Metric                          2 pads, courtyard 1.9x0.9mm
+  footprint   C59 Capacitor_SMD:C_0402_1005Metric                         2 pads, courtyard 1.8x0.9mm
+  footprint    J7 Connector_PinHeader_2.54mm:PinHeader_2x13_P2.54mm_Vertical 26 pads, courtyard 6.1x34.0mm
+  footprint   R42 Resistor_SMD:R_0402_1005Metric                          2 pads, courtyard 1.9x0.9mm
+  footprint   R43 Resistor_SMD:R_0402_1005Metric                          2 pads, courtyard 1.9x0.9mm
+  footprint    J8 Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical 3 pads, courtyard 3.5x8.6mm
+  footprint    H1 MountingHole:MountingHole_2.7mm_M2.5                    1 pads, courtyard 5.9x5.9mm
+  footprint    H2 MountingHole:MountingHole_2.7mm_M2.5                    1 pads, courtyard 5.9x5.9mm
+  footprint    H3 MountingHole:MountingHole_2.7mm_M2.5                    1 pads, courtyard 5.9x5.9mm
+  footprint    H4 MountingHole:MountingHole_2.7mm_M2.5                    1 pads, courtyard 5.9x5.9mm
+─── Stage 2b: Deterministic placement (real courtyards) ───
+  plane +1V8 on In4.Cu: region x 45.7..56.2 y 27.1..41.2 (priority 1)
+─── Stage 2c: Autorouting (6 layers: signals on F.Cu/In2.Cu/B.Cu, planes In1.Cu=GND In3.Cu=+3V3 In4.Cu=+1V2 In4.Cu=+1V8; trace 0.127mm, clearance 0.127mm, via 0.35/0.2mm) ───
+  net X24M_IN: 50Ω target → 0.149mm on JLC06161H-3313
+  net X24M_OUT: 50Ω target → 0.149mm on JLC06161H-3313
+  net USB_DP_J: 50Ω target → 0.149mm on JLC06161H-3313
+  net USB_DM_J: 50Ω target → 0.149mm on JLC06161H-3313
+  net USB_DP: 50Ω target → 0.149mm on JLC06161H-3313
+  net USB_DM: 50Ω target → 0.149mm on JLC06161H-3313
+  net ETH_TXP: 50Ω target → 0.149mm on JLC06161H-3313
+  net ETH_TXN: 50Ω target → 0.149mm on JLC06161H-3313
+  net ETH_RXP: 50Ω target → 0.149mm on JLC06161H-3313
+  net ETH_RXN: 50Ω target → 0.149mm on JLC06161H-3313
+  net SD_CLK_SOC: 50Ω target → 0.149mm on JLC06161H-3313
+  net SD_CLK: 50Ω target → 0.149mm on JLC06161H-3313
+  net SPI0_CLK: 50Ω target → 0.149mm on JLC06161H-3313
+  net LCD_CLK_SOC: 50Ω target → 0.149mm on JLC06161H-3313
+  net LCD_CLK: 50Ω target → 0.149mm on JLC06161H-3313
+  net CAM_MCSI_D0N: 50Ω target → 0.149mm on JLC06161H-3313
+  net CAM_MCSI_D0P: 50Ω target → 0.149mm on JLC06161H-3313
+  net CAM_MCSI_D1N: 50Ω target → 0.149mm on JLC06161H-3313
+  net CAM_MCSI_D1P: 50Ω target → 0.149mm on JLC06161H-3313
+  net CAM_MCSI_CKN: 50Ω target → 0.149mm on JLC06161H-3313
+  net CAM_MCSI_CKP: 50Ω target → 0.149mm on JLC06161H-3313
+  net CAM_MCLK_SOC: 50Ω target → 0.149mm on JLC06161H-3313
+  net CAM_MCLK: 50Ω target → 0.149mm on JLC06161H-3313
+  routed 192 of 192 connections (0 unrouted), 220 plane fanouts, 130 escape vias
+─── Stage 2d: physics audit (frequency / SI / thermal) ───
+  net      GND:        DC role=ground     z_target=None len=20.8mm vias=99
+  net     +3V3:        DC role=power      z_target=None len=14.4mm vias=52
+  net     +1V2:        DC role=digital    z_target=None len=21.7mm vias=24
+  net     +1V8:        DC role=power      z_target=None len=138.4mm vias=19
+  net     +3V0:        DC role=power      z_target=None len=36.8mm vias=9
+  net  RTC_VIO:        DC role=digital    z_target=None len=18.5mm vias=1
+  net     AGND:        DC role=ground     z_target=None len=22.9mm vias=3
+  net HPVCC_BP:        DC role=digital    z_target=None len=17.0mm vias=3
+  net   SVREF0:        DC role=digital    z_target=None len=17.7mm vias=4
+  net   SVREF1:        DC role=digital    z_target=None len=11.8mm vias=2
+  net      SZQ:        DC role=digital    z_target=None len=14.5mm vias=1
+  net     VRA1:        DC role=digital    z_target=None len=19.0mm vias=3
+  net     VRA2:        DC role=digital    z_target=None len=13.8mm vias=2
+  net EPHY_RTX:        DC role=digital    z_target=None len=8.5mm vias=2
+  net  X24M_IN:     24MHz role=clock      z_target=Some(50.0) len=13.2mm vias=3
+  net X24M_OUT:     24MHz role=clock      z_target=Some(50.0) len=13.2mm vias=2
+  net  X32K_IN:     33kHz role=clock      z_target=None len=17.4mm vias=4
+  net X32K_OUT:     33kHz role=clock      z_target=None len=11.7mm vias=1
+  net  RESET_N:        DC role=digital    z_target=None len=50.2mm vias=3
+  net   LRADC0:        DC role=digital    z_target=None len=48.4mm vias=4
+  net     KEY1:        DC role=digital    z_target=None len=8.5mm vias=0
+  net  PWR_LED:        DC role=digital    z_target=None len=1.5mm vias=0
+  net STAT_LED:        DC role=digital    z_target=None len=6.0mm vias=0
+  net  PB3_LED:        DC role=digital    z_target=None len=9.8mm vias=2
+  net  VBUS_IN:        DC role=power      z_target=None len=26.9mm vias=4
+  net      CC1:        DC role=digital    z_target=None len=11.7mm vias=2
+  net      CC2:        DC role=digital    z_target=None len=17.5mm vias=2
+  net USB_DP_J:        DC role=highspeed  z_target=Some(50.0) len=9.9mm vias=3
+  net USB_DM_J:        DC role=highspeed  z_target=Some(50.0) len=14.2mm vias=3
+  net     VBUS:        DC role=power      z_target=None len=166.6mm vias=10
+  net   USB_DP:    480MHz role=highspeed  z_target=Some(50.0) len=24.4mm vias=2
+  net   USB_DM:    480MHz role=highspeed  z_target=Some(50.0) len=22.9mm vias=2
+  net    U2_SW:        DC role=power      z_target=None len=16.6mm vias=3
+  net    U2_FB:        DC role=digital    z_target=None len=7.0mm vias=0
+  net   U2_BST:        DC role=digital    z_target=None len=9.8mm vias=0
+  net    U3_SW:        DC role=power      z_target=None len=14.2mm vias=4
+  net    U3_FB:        DC role=digital    z_target=None len=9.8mm vias=3
+  net   U3_BST:        DC role=digital    z_target=None len=8.1mm vias=0
+  net  ETH_TXP:    125MHz role=highspeed  z_target=Some(50.0) len=28.4mm vias=3
+  net  ETH_TXN:    125MHz role=highspeed  z_target=Some(50.0) len=28.1mm vias=2
+  net  ETH_RXP:    125MHz role=highspeed  z_target=Some(50.0) len=43.4mm vias=1
+  net  ETH_RXN:    125MHz role=highspeed  z_target=Some(50.0) len=31.5mm vias=2
+  net  ETH_VCC:        DC role=power      z_target=None len=19.3mm vias=7
+  net ETH_LED_LINK:        DC role=digital    z_target=None len=38.6mm vias=1
+  net ETH_LED_SPD:        DC role=digital    z_target=None len=53.1mm vias=2
+  net ETH_LED_A1:        DC role=digital    z_target=None len=7.5mm vias=0
+  net ETH_LED_A2:        DC role=digital    z_target=None len=7.5mm vias=0
+  net    SD_D2:     50MHz role=digital    z_target=None len=61.1mm vias=4
+  net    SD_D3:     50MHz role=digital    z_target=None len=61.1mm vias=4
+  net   SD_CMD:     50MHz role=digital    z_target=None len=53.8mm vias=4
+  net    SD_D0:     50MHz role=digital    z_target=None len=45.6mm vias=3
+  net    SD_D1:     50MHz role=digital    z_target=None len=46.6mm vias=4
+  net SD_CLK_SOC:     50MHz role=clock      z_target=Some(50.0) len=20.4mm vias=2
+  net   SD_CLK:     50MHz role=clock      z_target=Some(50.0) len=53.0mm vias=2
+  net    SD_CD:        DC role=digital    z_target=None len=47.0mm vias=2
+  net  SPI0_CS:        DC role=digital    z_target=None len=9.1mm vias=2
+  net SPI0_MISO:     50MHz role=digital    z_target=None len=10.3mm vias=2
+  net SPI0_MOSI:     50MHz role=digital    z_target=None len=13.3mm vias=2
+  net SPI0_CLK:     50MHz role=clock      z_target=Some(50.0) len=12.8mm vias=2
+  net LCD_LEDK:        DC role=digital    z_target=None len=11.6mm vias=1
+  net  LCD_PE4:     33MHz role=digital    z_target=None len=44.6mm vias=3
+  net  LCD_PE5:     33MHz role=digital    z_target=None len=39.1mm vias=2
+  net  LCD_PE6:     33MHz role=digital    z_target=None len=38.6mm vias=2
+  net  LCD_PE7:     33MHz role=digital    z_target=None len=34.8mm vias=3
+  net  LCD_PE8:     33MHz role=digital    z_target=None len=34.9mm vias=2
+  net  LCD_PE9:     33MHz role=digital    z_target=None len=32.8mm vias=3
+  net LCD_PE10:     33MHz role=digital    z_target=None len=29.8mm vias=2
+  net LCD_PE11:     33MHz role=digital    z_target=None len=30.4mm vias=2
+  net LCD_PE12:     33MHz role=digital    z_target=None len=31.5mm vias=2
+  net LCD_PE13:     33MHz role=digital    z_target=None len=33.5mm vias=3
+  net LCD_PE14:     33MHz role=digital    z_target=None len=36.7mm vias=3
+  net LCD_PE15:     33MHz role=digital    z_target=None len=35.8mm vias=2
+  net LCD_PE16:     33MHz role=digital    z_target=None len=39.5mm vias=2
+  net LCD_PE17:     33MHz role=digital    z_target=None len=40.9mm vias=2
+  net LCD_PE18:     33MHz role=digital    z_target=None len=39.5mm vias=3
+  net LCD_PE19:     33MHz role=digital    z_target=None len=42.8mm vias=2
+  net LCD_PE23:     33MHz role=digital    z_target=None len=43.4mm vias=3
+  net LCD_PE24:     33MHz role=digital    z_target=None len=45.3mm vias=3
+  net LCD_CLK_SOC:     33MHz role=clock      z_target=Some(50.0) len=7.6mm vias=2
+  net  LCD_CLK:     33MHz role=clock      z_target=Some(50.0) len=34.9mm vias=2
+  net LCD_DISP:        DC role=digital    z_target=None len=37.8mm vias=2
+  net LCD_HSYNC:        DC role=digital    z_target=None len=38.2mm vias=2
+  net LCD_VSYNC:        DC role=digital    z_target=None len=36.6mm vias=3
+  net   LCD_DE:        DC role=digital    z_target=None len=39.4mm vias=2
+  net  BL_GATE:        DC role=digital    z_target=None len=8.1mm vias=3
+  net   BL_PWM:        DC role=digital    z_target=None len=45.3mm vias=4
+  net CAM_MCSI_D0N:    500MHz role=highspeed  z_target=Some(50.0) len=33.7mm vias=2
+  net CAM_MCSI_D0P:    500MHz role=highspeed  z_target=Some(50.0) len=33.7mm vias=4
+  net CAM_MCSI_D1N:    500MHz role=highspeed  z_target=Some(50.0) len=33.0mm vias=4
+  net CAM_MCSI_D1P:    500MHz role=highspeed  z_target=Some(50.0) len=32.4mm vias=2
+  net CAM_MCSI_CKN:    500MHz role=highspeed  z_target=Some(50.0) len=32.6mm vias=2
+  net CAM_MCSI_CKP:    500MHz role=highspeed  z_target=Some(50.0) len=31.8mm vias=2
+  net CAM_MCLK_SOC:     24MHz role=clock      z_target=Some(50.0) len=7.9mm vias=2
+  net CAM_MCLK:     24MHz role=clock      z_target=Some(50.0) len=53.1mm vias=3
+  net CAM_PWDN:        DC role=digital    z_target=None len=54.1mm vias=3
+  net CAM_RESET:        DC role=digital    z_target=None len=50.9mm vias=4
+  net  CAM_SCL:        DC role=digital    z_target=None len=49.0mm vias=5
+  net  CAM_SDA:        DC role=digital    z_target=None len=50.0mm vias=5
+  net     HP_L:        DC role=analog     z_target=None len=21.5mm vias=2
+  net     HP_R:        DC role=analog     z_target=None len=23.4mm vias=3
+  net HPCOM_OUT:        DC role=analog     z_target=None len=46.0mm vias=3
+  net    HPCOM:        DC role=digital    z_target=None len=9.5mm vias=2
+  net  HPCOMFB:        DC role=digital    z_target=None len=9.9mm vias=2
+  net I2C0_SDA:        DC role=digital    z_target=None len=35.9mm vias=2
+  net I2C0_SCL:        DC role=digital    z_target=None len=31.2mm vias=4
+  net GPIO_PG0:        DC role=digital    z_target=None len=40.6mm vias=4
+  net UART2_TX:        DC role=digital    z_target=None len=24.8mm vias=2
+  net UART2_RX:        DC role=digital    z_target=None len=22.7mm vias=2
+  net GPIO_PG1:        DC role=digital    z_target=None len=41.4mm vias=3
+  net     PWM1:        DC role=digital    z_target=None len=21.8mm vias=1
+  net GPIO_PG4:        DC role=digital    z_target=None len=46.1mm vias=2
+  net GPIO_PG5:        DC role=digital    z_target=None len=43.8mm vias=4
+  net UART0_TX:        DC role=digital    z_target=None len=53.0mm vias=2
+  net UART0_RX:        DC role=digital    z_target=None len=50.7mm vias=2
+  [warning] power-inductance GND: 56.1nH series L on power net — decouple close; V = L·di/dt
+  [warning] power-inductance +3V3: 30.5nH series L on power net — decouple close; V = L·di/dt
+  [warning] power-inductance +1V8: 53.1nH series L on power net — decouple close; V = L·di/dt
+  [warning] power-inductance VBUS: 24.5nH series L on power net — decouple close; V = L·di/dt
+  [warning] net-self-resonance CAM_MCSI_D0N: net LC self-resonance 750MHz close to operating 500MHz (L=11.6nH C=3.89pF) — oscillation/peaking risk
+  [warning] net-self-resonance CAM_MCSI_D0P: net LC self-resonance 719MHz close to operating 500MHz (L=12.6nH C=3.89pF) — oscillation/peaking risk
+  [warning] net-self-resonance CAM_MCSI_D1N: net LC self-resonance 732MHz close to operating 500MHz (L=12.4nH C=3.82pF) — oscillation/peaking risk
+  [warning] crosstalk-risk LCD_PE19↔LCD_PE14: 22 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk LCD_PE19↔LCD_PE16: 43 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk PB3_LED↔BL_PWM: 25 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk USB_DP_J↔USB_DM_J: 38 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk UART2_RX↔GPIO_PG5: 27 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk UART2_RX↔UART2_TX: 59 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk UART2_RX↔I2C0_SCL: 22 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk UART0_TX↔UART0_RX: 31 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk SPI0_CLK↔SPI0_CS: 21 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk SPI0_CLK↔CAM_SDA: 29 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk SPI0_CS↔SPI0_MOSI: 23 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk GPIO_PG0↔LCD_PE23: 42 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk GPIO_PG0↔LCD_PE18: 34 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk GPIO_PG5↔HPCOM_OUT: 24 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk GPIO_PG5↔+1V8: 51 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk GPIO_PG5↔GPIO_PG4: 52 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk GPIO_PG5↔BL_PWM: 32 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk GPIO_PG5↔CAM_SDA: 35 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk LCD_PE15↔LCD_PE23: 22 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk LCD_PE15↔LCD_PE18: 22 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk LCD_PE15↔LCD_PE17: 25 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk ETH_LED_LINK↔ETH_LED_SPD: 30 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk LCD_PE23↔LCD_PE24: 86 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk LCD_PE23↔LCD_PE18: 22 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk CAM_RESET↔CAM_PWDN: 25 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk CAM_RESET↔HPCOM_OUT: 37 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk CAM_RESET↔CAM_SDA: 62 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk CAM_PWDN↔GPIO_PG4: 24 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk CAM_MCSI_D1N↔CAM_MCSI_D1P: 21 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk SZQ↔SVREF0: 26 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk ETH_LED_SPD↔ETH_RXP: 39 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk GPIO_PG1↔PWM1: 36 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk HPCOM_OUT↔+1V8: 51 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk CAM_MCSI_D1P↔CAM_MCSI_CKN: 114 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk CAM_MCSI_D1P↔CAM_MCSI_D0P: 110 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk +1V8↔GPIO_PG4: 58 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk +1V8↔CAM_SCL: 26 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk +1V8↔CAM_SDA: 28 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk CAM_MCSI_CKN↔CAM_MCSI_D0P: 60 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk X32K_OUT↔EPHY_RTX: 24 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk ETH_TXN↔ETH_RXP: 21 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk LCD_HSYNC↔LCD_CLK_SOC: 27 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk LCD_PE4↔LCD_VSYNC: 23 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk CAM_SCL↔CAM_SDA: 65 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk PWM1↔I2C0_SCL: 52 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk EPHY_RTX↔ETH_TXP: 34 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk SPI0_MOSI↔CAM_SDA: 35 parallel-adjacent cells — apply 3W/5W spacing
+  [info] thermal-via-budget U1: plan ≥9 thermal vias under the pad (P=0.80W)
+  [warning] density-too-high (board): density 147% > 70% — thermal crowding and router pain
+─── Stage 3: kicad-cli ERC ───
+─── Stage 4: kicad-cli DRC (zones refilled, report parsed) ───
+  0 error(s), 314 warning(s), 0 unconnected [silk_edge_clearance×3 silk_over_copper×65 silk_overlap×82 via_dangling×32] [report circuit-drc.rpt]
+─── Stage 5: kicad-cli exports ───
+─── Stage 6: someda verification ───
+─── Stage 7: export preflight (skill 103) ───
+         drc PASS: 0 error(s)
+      shorts PASS: 0 short(s)
+    unrouted PASS: 0 unrouted net(s)
+       pours PASS: filled
+     gerbers PASS: package written
+       drill PASS: excellon written
+─── HONEST-DONE: all 6 gates pass ───
+
+─── BUILD COMPLETE ───
+  project:  /root/pcb/sompi/board/out
+  schematic: /root/pcb/sompi/board/out/circuit.kicad_sch
+  board:     /root/pcb/sompi/board/out/circuit.kicad_pcb
+  plan:      132 components, 114 nets
+
+  ✓ [plan] 132 components, 114 nets
+  ✓ [footprints] 132 real KiCad library footprints, 6 copper layers
+  ✓ [pin-coverage] every plan pin has a pad (500 pins across 132 footprints)
+  ✓ [placement] placed 132 footprint(s) on 90x60mm, 128 hint(s), 0 courtyard overlap(s)
+  ✓ [route] routed 192 of 192 connections (0 unrouted), 220 plane fanouts, 130 escape vias
+  ✓ [si-audit] 0 error(s), 54 warning(s); stray L/C measured per net
+  ✓ [thermal-audit] 0 error(s), 1 warning(s)
+  ✓ [fab-scope] JLC06161H-3313: trace 0.127/0.127mm, via 0.35/0.2mm inside JLCPCB 6-layer scope (±10% impedance)
+  ✓ [generate] wrote /root/pcb/sompi/board/out/circuit.kicad_sch and /root/pcb/sompi/board/out/circuit.kicad_pcb
+  ✓ [kicad-erc] [exit 5]
+  ✓ [kicad-drc] 0 error(s), 314 warning(s), 0 unconnected [silk_edge_clearance×3 silk_over_copper×65 silk_overlap×82 via_dangling×32] [report circuit-drc.rpt]
+  ✓ [export-gerbers] [exit 0] (13 Gerber layers written: 6 copper + mask/paste/silk/outline)
+  ✓ [export-drill] [exit 0]
+  ✓ [export-pos] [exit 0]
+  ✓ [export-bom] [exit 0]
+  ✓ [render] render/board-top.png render/board-bottom.png [exit 0]
+  ✓ [someda-erc] 4 finding(s) [4 = known power-symbol gap (M4)]
+  ✓ [someda-drc] 0 error(s), 0 warning(s)
+  ✓ [export-preflight] drc=PASS shorts=PASS unrouted=PASS pours=PASS gerbers=PASS drill=PASS
+
+honest-done: VERIFIED — all stages passed

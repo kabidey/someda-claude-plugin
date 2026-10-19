@@ -23,13 +23,22 @@ Follow the contract in [CONTRACT.md](../skills/someda/references/CONTRACT.md):
 - Real parts, real datasheet pinouts, `"REFDES:PIN"` pin references
 - Declare `freq_hz`/`role` on nets whose frequency the intent knows
 - Declare `power_w` on parts that dissipate
-- 100nF decoupling on every IC power pin
+- 100nF decoupling on every IC power pin, `near` the IC
+- Footprints are real KiCad `Lib:Name` footprints; pin numbers must match their pads
+- Connectors get an edge `position`, an `edge_at` slot and a `rotation` facing outward, on the edge nearest their SoC pins
+- 4/6-layer boards declare `layers`, `planes` and a `board` size
 - Never emit coordinates
 
 ## 3. Build
 
 ```!
 SOMEDA_PLAN_FILE=plan.json SOMEDA_PROJECT_DIR=./someda-build "${SOMEDA}" ai build "$ARGUMENTS"
+```
+
+Custom footprints live in your own `.pretty` directory: add it with `SOMEDA_FOOTPRINT_DIRS=/path/to/lib`. If connections stay unrouted, rerun with `SOMEDA_ROUTE_DEBUG=2` to get occupancy maps around the failed pins, then fix the placement intent (edge, `edge_at`, `near`, board size).
+
+```!
+true
 ```
 
 ## 4. Report honestly

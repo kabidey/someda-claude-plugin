@@ -13,18 +13,33 @@ The planner (Claude) writes this JSON. The engine validates it strictly, then ow
     {
       "reference": "R1",              // unique refdes, required
       "value": "10k",                 // part value; may carry power ("3W LED")
-      "lib_id": "Device:R",           // KiCad lib convention
-      "footprint": "Resistor_SMD:R_0603_1608Metric",  // optional
-      "power_w": 0.25                 // optional: dissipation in watts
+      "lib_id": "Device:R",           // KiCad symbol convention (schematic only)
+      "footprint": "Resistor_SMD:R_0402_1005Metric",  // real KiCad footprint "Lib:Name"
+      "power_w": 0.25,                // optional: dissipation in watts
+      "position": "left_edge",        // optional: top_left, top, top_right, left, center, right,
+                                      //   bottom_left, bottom, bottom_right, or an edge:
+                                      //   left_edge, right_edge, top_edge, bottom_edge
+      "edge_at": 0.3,                 // optional, edges only: 0.0 = left/top end … 1.0 = right/bottom end
+      "rotation": 270,                // optional: 0/90/180/270, KiCad sense (CCW on screen)
+      "near": "U1"                    // optional: hug this reference, on the side of the pins they share
     }
   ],
   "nets": [
     {
-      "name": "VCC",                  // power nets: exactly "VCC"/"GND"
-      "pins": ["U1:1", "R1:1"],       // "REFDES:PIN_NUMBER", required
+      "name": "GND",                  // power nets: "VCC"/"GND" on 2-layer boards; real rail names otherwise
+      "pins": ["U1:1", "R1:1"],       // "REFDES:PAD_NUMBER", required; pad numbers as in the footprint
       "freq_hz": 2400000000,          // optional: highest frequency carried
       "role": "rf"                    // optional: power|ground|clock|rf|highspeed|analog|digital
     }
+  ],
+  // multilayer (optional)
+  "layers": 6,                        // 2 (default), 4 or 6 (even, up to 12)
+  "board": {"width_mm": 90, "height_mm": 60},   // fixed outline; absent = area budget from courtyards
+  "planes": [                         // copper pours on inner layers (never F.Cu/B.Cu)
+    {"net": "GND",  "layer": "In1.Cu"},
+    {"net": "+3V3", "layer": "In3.Cu"},
+    {"net": "+1V2", "layer": "In4.Cu", "priority": 0},
+    {"net": "+1V8", "layer": "In4.Cu", "region": "auto", "priority": 1}   // island under its pins; or [x0,y0,x1,y1] mm
   ]
 }
 ```
@@ -32,9 +47,19 @@ The planner (Claude) writes this JSON. The engine validates it strictly, then ow
 ## Validation rules (all enforced)
 
 - No duplicate references; every net pin must belong to a listed component
-- Pins are `"REFDES:PIN_NUMBER"` — malformed pins rejected
-- After generation, EVERY plan pin must exist as a pad (pin-coverage gate) — the plan and the copper cannot disagree
-- Components not referenced by any net get pins 1+2 by default
+- Pins are `"REFDES:PAD_NUMBER"` — malformed pins rejected; after generation EVERY plan pin must exist as a pad of the footprint (pin-coverage gate) — a wrong pin number is caught here, a wrong-but-existing one is not
+- `layers` must be even, 2..12; `planes` need `layers` ≥ 4 and name inner copper layers and plan nets
+- Components referenced by no net (mounting holes) get no schematic pins and no connectivity
+
+## Footprints
+
+`footprint` is resolved to `<dir>/<Lib>.pretty/<Name>.kicad_mod` from `SOMEDA_FOOTPRINT_DIRS` (colon separated), `KICAD10_FOOTPRINT_DIR`…`KICAD7_FOOTPRINT_DIR`, then the standard install paths. The library definition is embedded verbatim in the board (silk, fab, courtyard, keep-outs, 3D model), with placement, reference, value and pad nets injected. Pad angles and zone polygons follow KiCad's conventions (verified against kicad-cli). Custom footprints (e.g. an exposed-pad variant) go in your own `.pretty` directory on `SOMEDA_FOOTPRINT_DIRS`.
+
+## Placement
+
+- `position` edges put the courtyard flush to that edge, sliding along it from `edge_at` to the first free slot; semantic positions spiral out from their slot
+- Everything else is placed in connectivity order at the free spot nearest the centroid of its already-placed neighbours; `near` aims at the anchor's pads that share a net with the part (a 1V8 cap goes to the 1V8 pins)
+- Real courtyards never overlap (0.6mm gap, 0.5mm board margin); fine-pitch ICs get a 3.6mm keep-out ring for escape vias; parts ≥0.5W keep ≥15mm apart
 
 ## Frequency awareness
 
@@ -44,7 +69,7 @@ Frequency sources, in priority order:
 3. **Net name** — `VCC/VDD/+3V`→power(DC), `GND/VSS`→ground, `*CLK*/XTAL/OSC*`→clock, `RF*/ANT*`→RF, `USB/DDR/PCIE`→highspeed
 
 What it drives:
-- **Impedance control**: RF/high-speed/fast-clock nets get a 50Ω target; the router SOLVES the trace width from the microstrip equation on the JLCPCB stackup (2-layer 1.6mm FR-4, Er 4.5 → 2.78mm for 50Ω)
+- **Impedance control**: RF/high-speed/fast-clock nets get a 50Ω target; the router SOLVES the trace width from the microstrip equation on the JLCPCB stackup of the layer count (2-layer 1.6mm FR-4 Er 4.5 → 2.78mm; 4-layer JLC04161H-7628 h 0.21mm; 6-layer JLC06161H-3313 h 0.10mm → ~0.15mm)
 - **Transmission-line checks**: rise-time vs critical length (Tpd ≈ 150ps/inch)
 - **Crosstalk spacing**: 3W rule, 5W for RF/high-speed
 - **SWR audit**: routed Z0 vs target (error >2, warning >1.5) — JLCPCB impedance tolerance is ±10%
@@ -55,15 +80,19 @@ What it drives:
 
 - `power_w` declared per component, or parsed from the value (`"0.25W"`, `"500mW"`, `"3W LED"`)
 - **Placement**: every pair of components ≥0.5W gets apart ≥15mm (the constraint solver enforces it)
-- **Thermal audit**: package θ_JA classes (DIP-8 85, SOIC-8 120, SOT-23 250, QFN 40 °C/W) → T_J = T_A + P·θ_JA vs the 125°C limit; ≥0.5W parts get a thermal-via budget (1 via per 1-2mm² of pad)
+- **Thermal audit**: package θ_JA classes (DIP-8 85, SOIC-8 120, SOT-23 250, SOT-23-5/6 200, LQFP-100+ 45, QFN/exposed pad 40 °C/W) → T_J = T_A + P·θ_JA vs the 125°C limit
 - **Board area**: high-power parts claim 50% extra courtyard area
 
-## Schematic best practices (ERC-checked)
+## Routing (what the engine does with the plan)
 
-- **Decoupling**: every IC power net must contain a capacitor — `missing-decoupling` flags with the skill-102 guidance (100nF within 2mm of each IC power pin)
-- **Power flags**: nets named like power without a power symbol flag `missing-power-flag` (power symbols are planned work; the flag is honest until then)
+- Design rules per layer count: 2-layer 0.25mm trace / 0.2 clearance / 0.6-0.3 via on a 0.5mm grid; 4- and 6-layer 0.127/0.127 / 0.35-0.2 via on a 0.127mm grid, hole-to-hole 0.45, copper-to-edge 0.5 — all inside JLCPCB scope, and written to `circuit.kicad_pro` so kicad-cli judges by them
+- Plane nets are never routed pad-to-pad: every SMD pad gets a fanout stub to a through via (preferring sites under the part body); through-hole pads reach the plane by their barrel; a pad with no via site is routed as a trace to the nearest member of its net
+- Every fine-pitch signal pin (pitch < 0.65mm) gets a depth-staggered escape via so its connection starts on the inner layers; nothing else may run along a pin row or drop a via next to an escape lane
+- Footprint keep-out zones block tracks/vias as declared; NPTH holes and unnetted pads are keep-outs with hole clearance
+- Bounded rip-up-and-reroute (whole nets), then plain retries of whatever is still open
+- **Not done**: differential-pair routing, length matching, bottom-side placement. USB/Ethernet/MIPI pairs are routed as two single-ended traces — say so
 
-## Worked example: 555 LED blinker
+## Worked example: 555 LED blinker (2 layers)
 
 ```json
 {
@@ -71,38 +100,26 @@ What it drives:
   "description": "555 timer astable blinking an LED at ~1Hz",
   "components": [
     {"reference": "U1", "value": "NE555", "lib_id": "Timer:NE555", "footprint": "Package_DIP:DIP-8_W7.62mm"},
-    {"reference": "R1", "value": "10k", "lib_id": "Device:R", "footprint": "Resistor_SMD:R_0603_1608Metric"},
-    {"reference": "R2", "value": "470k", "lib_id": "Device:R", "footprint": "Resistor_SMD:R_0603_1608Metric"},
-    {"reference": "C1", "value": "1uF", "lib_id": "Device:C", "footprint": "Capacitor_SMD:C_0603_1608Metric"},
-    {"reference": "C2", "value": "100nF", "lib_id": "Device:C", "footprint": "Capacitor_SMD:C_0603_1608Metric"},
+    {"reference": "R1", "value": "10k", "lib_id": "Device:R", "footprint": "Resistor_SMD:R_0603_1608Metric", "near": "U1"},
+    {"reference": "R2", "value": "470k", "lib_id": "Device:R", "footprint": "Resistor_SMD:R_0603_1608Metric", "near": "U1"},
+    {"reference": "C1", "value": "1uF", "lib_id": "Device:C", "footprint": "Capacitor_SMD:C_0603_1608Metric", "near": "U1"},
+    {"reference": "C2", "value": "100nF", "lib_id": "Device:C", "footprint": "Capacitor_SMD:C_0603_1608Metric", "near": "U1"},
     {"reference": "D1", "value": "red LED", "lib_id": "Device:LED", "footprint": "LED_SMD:LED_0603_1608Metric"},
-    {"reference": "R3", "value": "330R", "lib_id": "Device:R", "footprint": "Resistor_SMD:R_0603_1608Metric"}
+    {"reference": "R3", "value": "330R", "lib_id": "Device:R", "footprint": "Resistor_SMD:R_0603_1608Metric", "near": "D1"}
   ],
   "nets": [
-    {"name": "VCC", "pins": ["U1:8", "R1:1", "R2:1", "C2:1"]},
+    {"name": "VCC", "pins": ["U1:8", "U1:4", "R1:1", "R2:1", "C2:1"]},
     {"name": "GND", "pins": ["U1:1", "C1:2", "C2:2", "D1:2"]},
-    {"name": "TRIG", "pins": ["U1:2", "R2:2", "C1:1"]},
+    {"name": "TRIG", "pins": ["U1:2", "U1:6", "R2:2", "C1:1"]},
     {"name": "OUT", "pins": ["U1:3", "R3:1"]},
     {"name": "LED_K", "pins": ["R3:2", "D1:1"]},
-    {"name": "DIS", "pins": ["U1:7", "R1:2", "R2:1"]}
+    {"name": "DIS", "pins": ["U1:7", "R1:2"]}
   ]
 }
 ```
 
-The 555's real pinout: 1=GND, 2=TRIG, 3=OUT, 4=RESET, 5=CTRL, 6=THRES, 7=DISCH, 8=VCC. Pin 4 ties to VCC, pin 5 optionally gets a 10nF to GND — add them for a complete design.
+The 555's real pinout: 1=GND, 2=TRIG, 3=OUT, 4=RESET, 5=CTRL, 6=THRES, 7=DISCH, 8=VCC. This plan reaches all six gates with kicad-cli DRC at 0 errors.
 
-## Worked example: an RF net with declared frequency
+## Worked example: a 6-layer SBC
 
-```json
-{"name": "RF_IN", "pins": ["J1:1", "U1:1", "C1:1"], "freq_hz": 2400000000, "role": "rf"}
-```
-
-This makes the router solve the 50Ω width, the SI audit measure SWR against the target, and — when the solved width exceeds what fine-pitch pads can accept — the build honestly reports the mismatch and counsels the 4-layer thin-dielectric stackup (JLCPCB's recommended flow for 50Ω RF).
-
-## What the engine does with the plan (and never asks the planner to do)
-
-- Board outline from the area budget (with thermal + impedance-corridor headroom)
-- Component placement (semantic positions, groups, apart constraints, center-out packing by connectivity)
-- Trace widths (solved from physics, neck-downs at fine pitches)
-- Routing (A* grid router, power-first, impedance-first, vias with clearance halos)
-- The honest-done gate: every stage's output re-checked by the next stage's own rules; the 6-gate export preflight (DRC, shorts, unrouted, pours, Gerbers, drill) is the final word on "orderable"
+See `examples/sompi-v3s/` in the plugin repository: an Allwinner V3s (eLQFP-128, 0.4mm pitch) Linux SBC with USB-C, Ethernet, microSD, SPI NOR, LCD and camera FPCs, audio and a GPIO header — 132 components, 114 nets, planes GND/+3V3/+1V2 plus a +1V8 island, 220 plane fanouts, 130 escape vias, every connection routed, kicad-cli DRC 0 errors, 13 Gerber layers. Its generator script shows the pattern: look every SoC pin up by name in a verified pin table, derive connector rotations from footprint geometry, and place connectors on the edge facing their pins.
