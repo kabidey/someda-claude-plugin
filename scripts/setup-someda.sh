@@ -12,7 +12,7 @@
 set -euo pipefail
 
 SOMEDA_REPO="kabidey/someda"
-SOMEDA_VERSION="${SOMEDA_VERSION:-v0.7.0}"
+SOMEDA_VERSION="${SOMEDA_VERSION:-v0.8.0}"
 INSTALL_DIR="${HOME}/.local/share/someda/bin"
 
 err() { echo "someda-setup: $*" >&2; exit 1; }
@@ -145,6 +145,11 @@ esac
 
 [ -f "${TMP}/${BIN}" ] || err "archive did not contain ${BIN}"
 install -m 0755 "${TMP}/${BIN}" "${DEST}"
+# the desktop window ships in the same archive since 0.8.0; keep it next to the CLI
+APP="${BIN%.exe}-app${BIN#someda}"
+if [ -f "${TMP}/${APP}" ]; then
+    install -m 0755 "${TMP}/${APP}" "${INSTALL_DIR}/${APP}"
+fi
 echo "${SOMEDA_VERSION}" > "${STAMP}"
 setup_libraries
 echo "${DEST}"
