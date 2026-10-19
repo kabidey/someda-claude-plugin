@@ -134,32 +134,33 @@
   footprint    H3 MountingHole:MountingHole_2.7mm_M2.5                    1 pads, courtyard 5.9x5.9mm
   footprint    H4 MountingHole:MountingHole_2.7mm_M2.5                    1 pads, courtyard 5.9x5.9mm
 ─── Stage 2b: Deterministic placement (real courtyards) ───
+  silkscreen: 27 reference(s) have no clear spot and go on F.Fab instead
   plane +1V8 on In4.Cu: region x 45.7..56.2 y 27.1..41.2 (priority 1)
 ─── Stage 2c: Autorouting (6 layers: signals on F.Cu/In2.Cu/B.Cu, planes In1.Cu=GND In3.Cu=+3V3 In4.Cu=+1V2 In4.Cu=+1V8; trace 0.127mm, clearance 0.127mm, via 0.35/0.2mm) ───
-  net X24M_IN: 50Ω target → 0.149mm on JLC06161H-3313
-  net X24M_OUT: 50Ω target → 0.149mm on JLC06161H-3313
-  net USB_DP_J: 50Ω target → 0.149mm on JLC06161H-3313
-  net USB_DM_J: 50Ω target → 0.149mm on JLC06161H-3313
-  net USB_DP: 50Ω target → 0.149mm on JLC06161H-3313
-  net USB_DM: 50Ω target → 0.149mm on JLC06161H-3313
-  net ETH_TXP: 50Ω target → 0.149mm on JLC06161H-3313
-  net ETH_TXN: 50Ω target → 0.149mm on JLC06161H-3313
-  net ETH_RXP: 50Ω target → 0.149mm on JLC06161H-3313
-  net ETH_RXN: 50Ω target → 0.149mm on JLC06161H-3313
-  net SD_CLK_SOC: 50Ω target → 0.149mm on JLC06161H-3313
-  net SD_CLK: 50Ω target → 0.149mm on JLC06161H-3313
-  net SPI0_CLK: 50Ω target → 0.149mm on JLC06161H-3313
-  net LCD_CLK_SOC: 50Ω target → 0.149mm on JLC06161H-3313
-  net LCD_CLK: 50Ω target → 0.149mm on JLC06161H-3313
-  net CAM_MCSI_D0N: 50Ω target → 0.149mm on JLC06161H-3313
-  net CAM_MCSI_D0P: 50Ω target → 0.149mm on JLC06161H-3313
-  net CAM_MCSI_D1N: 50Ω target → 0.149mm on JLC06161H-3313
-  net CAM_MCSI_D1P: 50Ω target → 0.149mm on JLC06161H-3313
-  net CAM_MCSI_CKN: 50Ω target → 0.149mm on JLC06161H-3313
-  net CAM_MCSI_CKP: 50Ω target → 0.149mm on JLC06161H-3313
-  net CAM_MCLK_SOC: 50Ω target → 0.149mm on JLC06161H-3313
-  net CAM_MCLK: 50Ω target → 0.149mm on JLC06161H-3313
-  routed 192 of 192 connections (0 unrouted), 220 plane fanouts, 130 escape vias
+  net X24M_IN: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
+  net X24M_OUT: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
+  net USB_DP_J: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
+  net USB_DM_J: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
+  net USB_DP: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
+  net USB_DM: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
+  net ETH_TXP: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
+  net ETH_TXN: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
+  net ETH_RXP: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
+  net ETH_RXN: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
+  net SD_CLK_SOC: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
+  net SD_CLK: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
+  net SPI0_CLK: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
+  net LCD_CLK_SOC: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
+  net LCD_CLK: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
+  net CAM_MCSI_D0N: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
+  net CAM_MCSI_D0P: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
+  net CAM_MCSI_D1N: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
+  net CAM_MCSI_D1P: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
+  net CAM_MCSI_CKN: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
+  net CAM_MCSI_CKP: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
+  net CAM_MCLK_SOC: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
+  net CAM_MCLK: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
+  routed 192 of 192 connections (0 unrouted), 220 plane fanouts, 130 escape vias (32 unused)
 ─── Stage 2d: physics audit (frequency / SI / thermal) ───
   net      GND:        DC role=ground     z_target=None len=20.8mm vias=99
   net     +3V3:        DC role=power      z_target=None len=14.4mm vias=52
@@ -275,65 +276,64 @@
   net GPIO_PG5:        DC role=digital    z_target=None len=43.8mm vias=4
   net UART0_TX:        DC role=digital    z_target=None len=53.0mm vias=2
   net UART0_RX:        DC role=digital    z_target=None len=50.7mm vias=2
-  [warning] power-inductance GND: 56.1nH series L on power net — decouple close; V = L·di/dt
-  [warning] power-inductance +3V3: 30.5nH series L on power net — decouple close; V = L·di/dt
-  [warning] power-inductance +1V8: 53.1nH series L on power net — decouple close; V = L·di/dt
-  [warning] power-inductance VBUS: 24.5nH series L on power net — decouple close; V = L·di/dt
-  [warning] net-self-resonance CAM_MCSI_D0N: net LC self-resonance 750MHz close to operating 500MHz (L=11.6nH C=3.89pF) — oscillation/peaking risk
-  [warning] net-self-resonance CAM_MCSI_D0P: net LC self-resonance 719MHz close to operating 500MHz (L=12.6nH C=3.89pF) — oscillation/peaking risk
-  [warning] net-self-resonance CAM_MCSI_D1N: net LC self-resonance 732MHz close to operating 500MHz (L=12.4nH C=3.82pF) — oscillation/peaking risk
-  [warning] crosstalk-risk LCD_PE19↔LCD_PE14: 22 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk LCD_PE19↔LCD_PE16: 43 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk PB3_LED↔BL_PWM: 25 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk USB_DP_J↔USB_DM_J: 38 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk UART2_RX↔GPIO_PG5: 27 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk UART2_RX↔UART2_TX: 59 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk UART2_RX↔I2C0_SCL: 22 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk UART0_TX↔UART0_RX: 31 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk SPI0_CLK↔SPI0_CS: 21 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk SPI0_CLK↔CAM_SDA: 29 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk SPI0_CS↔SPI0_MOSI: 23 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk GPIO_PG0↔LCD_PE23: 42 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] power-inductance GND: 56.5nH series L on power net — decouple close; V = L·di/dt
+  [warning] power-inductance +3V3: 30.8nH series L on power net — decouple close; V = L·di/dt
+  [warning] power-inductance +1V8: 56.3nH series L on power net — decouple close; V = L·di/dt
+  [warning] power-inductance VBUS: 35.5nH series L on power net — decouple close; V = L·di/dt
+  [warning] net-self-resonance CAM_MCSI_D0P: net LC self-resonance 723MHz close to operating 500MHz (L=13.4nH C=3.63pF) — oscillation/peaking risk
+  [warning] net-self-resonance CAM_MCSI_D1N: net LC self-resonance 735MHz close to operating 500MHz (L=13.2nH C=3.56pF) — oscillation/peaking risk
+  [warning] crosstalk-risk ETH_TXN↔ETH_RXP: 21 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk USB_DM_J↔CC1: 29 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk SVREF1↔+1V2: 21 parallel-adjacent cells — apply 3W/5W spacing
   [warning] crosstalk-risk GPIO_PG0↔LCD_PE18: 34 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk GPIO_PG5↔HPCOM_OUT: 24 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk GPIO_PG5↔+1V8: 51 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk GPIO_PG5↔GPIO_PG4: 52 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk GPIO_PG5↔BL_PWM: 32 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk GPIO_PG5↔CAM_SDA: 35 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk LCD_PE15↔LCD_PE23: 22 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk LCD_PE15↔LCD_PE18: 22 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk LCD_PE15↔LCD_PE17: 25 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk ETH_LED_LINK↔ETH_LED_SPD: 30 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk LCD_PE23↔LCD_PE24: 86 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk LCD_PE23↔LCD_PE18: 22 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk GPIO_PG0↔LCD_PE23: 42 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk CAM_MCSI_D1P↔CAM_MCSI_D0P: 110 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk CAM_MCSI_D1P↔CAM_MCSI_CKN: 114 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk PWM1↔GPIO_PG4: 31 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk PWM1↔I2C0_SDA: 45 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk PWM1↔I2C0_SCL: 52 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk LCD_VSYNC↔LCD_HSYNC: 36 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk +1V8↔CAM_RESET: 22 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk +1V8↔CAM_PWDN: 47 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk +1V8↔GPIO_PG4: 58 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk +1V8↔HPCOM_OUT: 33 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk +1V8↔CAM_MCSI_D1N: 22 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk +1V8↔CAM_SDA: 28 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk +1V8↔GPIO_PG5: 22 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk +1V8↔CAM_SCL: 26 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk LCD_PE19↔LCD_PE16: 43 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk LCD_PE19↔LCD_PE14: 22 parallel-adjacent cells — apply 3W/5W spacing
   [warning] crosstalk-risk CAM_RESET↔CAM_PWDN: 25 parallel-adjacent cells — apply 3W/5W spacing
   [warning] crosstalk-risk CAM_RESET↔HPCOM_OUT: 37 parallel-adjacent cells — apply 3W/5W spacing
   [warning] crosstalk-risk CAM_RESET↔CAM_SDA: 62 parallel-adjacent cells — apply 3W/5W spacing
   [warning] crosstalk-risk CAM_PWDN↔GPIO_PG4: 24 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk CAM_MCSI_D1N↔CAM_MCSI_D1P: 21 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk SZQ↔SVREF0: 26 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk ETH_LED_SPD↔ETH_RXP: 39 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk GPIO_PG1↔PWM1: 36 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk HPCOM_OUT↔+1V8: 51 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk CAM_MCSI_D1P↔CAM_MCSI_CKN: 114 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk CAM_MCSI_D1P↔CAM_MCSI_D0P: 110 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk +1V8↔GPIO_PG4: 58 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk +1V8↔CAM_SCL: 26 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk +1V8↔CAM_SDA: 28 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk CAM_MCSI_CKN↔CAM_MCSI_D0P: 60 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk CAM_MCSI_D0P↔CAM_MCSI_CKN: 59 parallel-adjacent cells — apply 3W/5W spacing
   [warning] crosstalk-risk X32K_OUT↔EPHY_RTX: 24 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk ETH_TXN↔ETH_RXP: 21 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk LCD_HSYNC↔LCD_CLK_SOC: 27 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk LCD_PE4↔LCD_VSYNC: 23 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk CAM_SCL↔CAM_SDA: 65 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk PWM1↔I2C0_SCL: 52 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk EPHY_RTX↔ETH_TXP: 34 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk ETH_RXP↔ETH_LED_LINK: 23 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk ETH_RXP↔ETH_LED_SPD: 42 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk SPI0_MOSI↔SPI0_CLK: 45 parallel-adjacent cells — apply 3W/5W spacing
   [warning] crosstalk-risk SPI0_MOSI↔CAM_SDA: 35 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk GPIO_PG4↔UART0_TX: 93 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk GPIO_PG4↔HPCOM_OUT: 22 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk GPIO_PG4↔GPIO_PG5: 30 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk SZQ↔SVREF0: 26 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk ETH_LED_LINK↔ETH_LED_SPD: 30 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk SPI0_CLK↔SPI0_CS: 21 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk SPI0_CLK↔CAM_SDA: 29 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk I2C0_SDA↔UART0_TX: 48 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk I2C0_SDA↔HPCOM_OUT: 22 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk LCD_PE15↔LCD_PE18: 22 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk LCD_PE15↔LCD_PE23: 22 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk LCD_PE15↔LCD_PE17: 25 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk UART2_TX↔UART2_RX: 37 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk LCD_PE18↔LCD_PE23: 30 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk HPCOM_OUT↔GPIO_PG5: 22 parallel-adjacent cells — apply 3W/5W spacing
+  [warning] crosstalk-risk CAM_SDA↔CAM_SCL: 40 parallel-adjacent cells — apply 3W/5W spacing
   [info] thermal-via-budget U1: plan ≥9 thermal vias under the pad (P=0.80W)
   [warning] density-too-high (board): density 147% > 70% — thermal crowding and router pain
 ─── Stage 3: kicad-cli ERC ───
 ─── Stage 4: kicad-cli DRC (zones refilled, report parsed) ───
-  0 error(s), 314 warning(s), 0 unconnected [silk_edge_clearance×3 silk_over_copper×65 silk_overlap×82 via_dangling×32] [report circuit-drc.rpt]
+  0 error(s), 32 warning(s), 0 unconnected, 0 fab-blocking [via_dangling×32] [report circuit-drc.rpt]
 ─── Stage 5: kicad-cli exports ───
 ─── Stage 6: someda verification ───
 ─── Stage 7: export preflight (skill 103) ───
@@ -355,13 +355,13 @@
   ✓ [footprints] 132 real KiCad library footprints, 6 copper layers
   ✓ [pin-coverage] every plan pin has a pad (500 pins across 132 footprints)
   ✓ [placement] placed 132 footprint(s) on 90x60mm, 128 hint(s), 0 courtyard overlap(s)
-  ✓ [route] routed 192 of 192 connections (0 unrouted), 220 plane fanouts, 130 escape vias
-  ✓ [si-audit] 0 error(s), 54 warning(s); stray L/C measured per net
+  ✓ [route] routed 192 of 192 connections (0 unrouted), 220 plane fanouts, 130 escape vias (32 unused)
+  ✓ [si-audit] 0 error(s), 53 warning(s); stray L/C measured per net
   ✓ [thermal-audit] 0 error(s), 1 warning(s)
   ✓ [fab-scope] JLC06161H-3313: trace 0.127/0.127mm, via 0.35/0.2mm inside JLCPCB 6-layer scope (±10% impedance)
   ✓ [generate] wrote /root/pcb/sompi/board/out/circuit.kicad_sch and /root/pcb/sompi/board/out/circuit.kicad_pcb
   ✓ [kicad-erc] [exit 5]
-  ✓ [kicad-drc] 0 error(s), 314 warning(s), 0 unconnected [silk_edge_clearance×3 silk_over_copper×65 silk_overlap×82 via_dangling×32] [report circuit-drc.rpt]
+  ✓ [kicad-drc] 0 error(s), 32 warning(s), 0 unconnected, 0 fab-blocking [via_dangling×32] [report circuit-drc.rpt]
   ✓ [export-gerbers] [exit 0] (13 Gerber layers written: 6 copper + mask/paste/silk/outline)
   ✓ [export-drill] [exit 0]
   ✓ [export-pos] [exit 0]
