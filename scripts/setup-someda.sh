@@ -52,10 +52,15 @@ if [ -n "${SOMEDA_BIN:-}" ]; then
     exit 0
 fi
 
-# 2. On PATH
+# 2. On PATH (a binary the user manages; the one this script installs is
+#    judged by its version stamp below)
+INSTALL_DIR="${HOME}/.local/share/someda/bin"
 if command -v someda >/dev/null 2>&1; then
-    command -v someda
-    exit 0
+    found="$(command -v someda)"
+    case "${found}" in
+        "${INSTALL_DIR}"/*) ;;
+        *) echo "${found}"; exit 0 ;;
+    esac
 fi
 
 # 3. Download the release binary for this platform
@@ -73,10 +78,17 @@ esac
 
 mkdir -p "${INSTALL_DIR}"
 DEST="${INSTALL_DIR}/${BIN}"
-if [ -x "${DEST}" ]; then
+STAMP="${INSTALL_DIR}/.version"
+# Reuse the installed binary only when it is the version this plugin
+# expects (live-verified: a plugin update to 0.7.0 kept the 0.6.1 binary
+# because any executable at DEST was accepted).
+if [ -x "${DEST}" ] && [ -f "${STAMP}" ] && [ "$(cat "${STAMP}" 2>/dev/null)" = "${SOMEDA_VERSION}" ]; then
     setup_libraries
     echo "${DEST}"
     exit 0
+fi
+if [ -x "${DEST}" ]; then
+    echo "someda-setup: installed binary is $(cat "${STAMP}" 2>/dev/null || echo 'unstamped'), plugin expects ${SOMEDA_VERSION} — replacing" >&2
 fi
 
 URL="https://github.com/${SOMEDA_REPO}/releases/download/${SOMEDA_VERSION}/${ASSET}"
@@ -94,6 +106,7 @@ build_from_source() {
         || err "git clone failed"
     (cd "${TMP}/src" && cargo build --release --quiet) || err "cargo build failed"
     install -m 0755 "${TMP}/src/target/release/${BIN}" "${DEST}"
+    echo "${SOMEDA_VERSION}" > "${STAMP}"
     setup_libraries
     echo "${DEST}"
     exit 0
@@ -118,4 +131,6 @@ esac
 
 [ -f "${TMP}/${BIN}" ] || err "archive did not contain ${BIN}"
 install -m 0755 "${TMP}/${BIN}" "${DEST}"
+echo "${SOMEDA_VERSION}" > "${STAMP}"
+setup_libraries
 echo "${DEST}"
