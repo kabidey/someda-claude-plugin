@@ -113,12 +113,26 @@ build_from_source() {
 }
 
 echo "Downloading someda ${SOMEDA_VERSION} for ${OS}/${ARCH}..." >&2
-if command -v curl >/dev/null 2>&1; then
-    curl -fsSL -o "${TMP}/${ASSET}" "${URL}" || build_from_source
-elif command -v wget >/dev/null 2>&1; then
-    wget -q -O "${TMP}/${ASSET}" "${URL}" || build_from_source
-else
-    err "need curl or wget to download the someda binary"
+# An authenticated `gh` reaches release assets of a private repository
+# (the plain download URL answers 404 there); curl/wget serve public ones;
+# a source build is the last resort (live-verified: curl 404 → silent
+# source build, a different binary than the released one).
+downloaded=""
+if command -v gh >/dev/null 2>&1 && gh auth status >/dev/null 2>&1; then
+    gh release download "${SOMEDA_VERSION}" --repo "${SOMEDA_REPO}" --pattern "${ASSET}" --dir "${TMP}" >/dev/null 2>&1 && downloaded=1
+fi
+if [ -z "${downloaded}" ]; then
+    if command -v curl >/dev/null 2>&1; then
+        curl -fsSL -o "${TMP}/${ASSET}" "${URL}" && downloaded=1
+    elif command -v wget >/dev/null 2>&1; then
+        wget -q -O "${TMP}/${ASSET}" "${URL}" && downloaded=1
+    else
+        err "need gh, curl or wget to download the someda binary"
+    fi
+fi
+if [ -z "${downloaded}" ]; then
+    echo "someda-setup: release asset not downloadable from ${URL} (private repository without gh auth, or no asset) — building from source" >&2
+    build_from_source
 fi
 
 case "${ASSET}" in
