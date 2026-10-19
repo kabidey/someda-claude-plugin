@@ -30,6 +30,10 @@ the LCSC/EasyEDA converter in a private virtualenv.
 You need [KiCad](https://www.kicad.org/) with `kicad-cli` on your PATH (developed and verified
 against KiCad 10.0.6). No API key is required: Claude is the planner.
 
+Not using Claude Code? The same release archive the plugin downloads also holds `someda-app`,
+a desktop window that does the whole flow with any language model provider (see the
+[engine README](https://github.com/kabidey/someda#the-desktop-app)).
+
 ## What a session looks like
 
 ```
