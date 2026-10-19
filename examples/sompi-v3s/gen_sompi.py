@@ -11,9 +11,9 @@ Run:  python3 -I gen_sompi.py   -> plan.json (someda CircuitPlan contract)
 import json, math, re, pathlib, sys
 
 HERE = pathlib.Path(__file__).resolve().parent
-PINS = json.load(open(HERE / "research" / "v3s_pins.json"))["pins"]
+PINS = json.load(open(HERE.parent / "research" / "v3s_pins.json"))["pins"]
 BY_NAME = {v["name"]: k for k, v in PINS.items()}
-FP_DIRS = [str(HERE / "lib"), "/usr/share/kicad/footprints"]
+FP_DIRS = ["/root/pcb/sompi/lib", "/usr/share/kicad/footprints"]
 
 def soc(name):
     """Pin NUMBER of a V3s pin by datasheet name (hard failure on a typo)."""
@@ -170,7 +170,7 @@ comp("U8", "USBLC6-2SC6", "Power_Protection:USBLC6-2SC6", "Package_TO_SOT_SMD:SO
 net("USB_DP_J", "U8:1"); net("USB_DP", "U8:6", soc("USB-DP"), freq_hz=480e6, role="highspeed")
 net("USB_DM_J", "U8:3"); net("USB_DM", "U8:4", soc("USB-DM"), freq_hz=480e6, role="highspeed")
 net("GND", "U8:2"); net("VBUS", "U8:5")
-notes.append("USB D+/D- are a 90 ohm differential pair routed single-ended by this engine (no pair routing)")
+notes.append("USB D+/D- declared as 90 ohm differential pairs (J1-U8 and U8-U1): coupled routing on the GND-referenced outer layer, intra-pair skew budget 1.1 mm (Toradex 102492 USB 2.0 table)")
 
 # --- 3V3 and 1V2 bucks: TPS562200 (1 GND, 2 SW, 3 VIN, 4 VFB, 5 EN, 6 VBST), 0.765 V FB
 def buck(ref, vout_name, r_top, r_bot, pos):
@@ -207,7 +207,7 @@ for n in ("ETH_TXP", "ETH_TXN", "ETH_RXP", "ETH_RXN"): R("51R 1%", n, "ETH_VCC",
 net("ETH_LED_LINK", "J2:10", soc("EPHY_LINK_LED")); net("ETH_LED_SPD", "J2:12", soc("EPHY_SPD_LED"))
 net("ETH_LED_A1", "J2:9"); net("ETH_LED_A2", "J2:11"); R("330R", "+3V3", "ETH_LED_A1", near="J2"); R("330R", "+3V3", "ETH_LED_A2", near="J2")
 notes.append("RJ45 LED pins 9/10 and 11/12 assumed anode/cathode order; verify against the HR911105A drawing")
-notes.append("Ethernet TX/RX are 100 ohm differential pairs routed single-ended by this engine")
+notes.append("Ethernet TX/RX declared as 100 ohm differential pairs, intra-pair skew budget 0.25 mm (Toradex 102492 Ethernet table)")
 
 # --- microSD (SDC0): DM3AT 1 DAT2, 2 DAT3/CD, 3 CMD, 4 VDD, 5 CLK, 6 VSS, 7 DAT0, 8 DAT1, 9 DET_B, 10 DET_A, SH
 J3_FP = "Connector_Card:microSD_HC_Hirose_DM3AT-SF-PEJM5"
@@ -250,7 +250,10 @@ J5_FP = "Connector_FFC-FPC:Hirose_FH12-24S-0.5SH_1x24-1MP_P0.50mm_Horizontal"
 comp("J5", "CAM MIPI 24P", "Connector_Generic:Conn_01x24", J5_FP, position="right_edge", edge_at=0.78, rotation=opening_rotation(J5_FP, "right_edge"))
 for p in sorted(pads_of(J5_FP) - {str(i) for i in range(1, 25)}): net("GND", f"J5:{p}")
 for p in (1, 4, 7, 10, 17, 19): net("GND", f"J5:{p}")
-mipi = {2: "MCSI-D0N", 3: "MCSI-D0P", 5: "MCSI-D1N", 6: "MCSI-D1P", 8: "MCSI-CKN", 9: "MCSI-CKP"}
+# P on the lower-numbered pin of each pair: with the connector on the right edge this keeps the
+# P/N order the same as at the SoC's pins 81-87, so the pairs route without a crossover. A camera
+# module with the opposite order still routes: the engine crosses the far tails through a via.
+mipi = {2: "MCSI-D0P", 3: "MCSI-D0N", 5: "MCSI-D1P", 6: "MCSI-D1N", 8: "MCSI-CKP", 9: "MCSI-CKN"}
 for pin, name in mipi.items():
     net(f"CAM_{name.replace('-', '_')}", soc(name), f"J5:{pin}", freq_hz=500e6, role="highspeed")
 net("CAM_MCLK_SOC", soc("PE20"), freq_hz=24e6, role="clock"); net("CAM_MCLK", "J5:11", freq_hz=24e6, role="clock"); R("33R", "CAM_MCLK_SOC", "CAM_MCLK", near="U1")
@@ -258,7 +261,7 @@ net("CAM_PWDN", soc("PG3"), "J5:12"); net("CAM_RESET", soc("PG2"), "J5:13")
 net("CAM_SCL", soc("PE21"), "J5:14"); net("CAM_SDA", soc("PE22"), "J5:15")
 R("4.7k", "+3V3", "CAM_SCL", near="J5"); R("4.7k", "+3V3", "CAM_SDA", near="J5")
 net("+3V3", "J5:16"); net("+1V8", "J5:18"); C("100nF", "+3V3", "GND", near="J5"); C("100nF", "+1V8", "GND", near="J5")
-notes.append("MIPI CSI-2 lanes are 100 ohm differential pairs routed single-ended by this engine")
+notes.append("MIPI CSI-2 lanes declared as 100 ohm differential pairs, intra-pair skew budget 0.15 mm (Toradex 102492 CSI table); clock-to-data skew not yet enforced. The 24-pin camera FPC pinout is a convention (GND/D0/GND/D1/GND/CK/GND/MCLK/PWDN/RESET/SCL/SDA/3V3/GND/1V8/GND); P sits on the lower pin number of each pair so the P/N order matches the SoC side — check against the camera module, a swapped module routes with a via crossover")
 
 # --- audio: 3.5 mm jack (capless headphone output with HPCOM virtual ground)
 J6_FP = "Connector_Audio:Jack_3.5mm_CUI_SJ-3523-SMT_Horizontal"
@@ -304,6 +307,10 @@ plan = {"name": plan_name, "description": "6-layer Linux SBC: Allwinner V3s, USB
                    {"net": "+1V2", "layer": "In4.Cu", "priority": 0},
                    # +1V8 island on In4 under the DRAM pins: right half of the SoC and below its centre line
                    {"net": "+1V8", "layer": "In4.Cu", "region": "auto", "priority": 1}],
+        "pairs": [{"p": "USB_DP_J", "n": "USB_DM_J", "z_diff": 90}, {"p": "USB_DP", "n": "USB_DM", "z_diff": 90},
+                  {"p": "ETH_TXP", "n": "ETH_TXN", "z_diff": 100}, {"p": "ETH_RXP", "n": "ETH_RXN", "z_diff": 100},
+                  {"p": "CAM_MCSI_D0P", "n": "CAM_MCSI_D0N", "z_diff": 100}, {"p": "CAM_MCSI_D1P", "n": "CAM_MCSI_D1N", "z_diff": 100},
+                  {"p": "CAM_MCSI_CKP", "n": "CAM_MCSI_CKN", "z_diff": 100}],
         "components": comps, "nets": list(nets.values())}
 json.dump(plan, open(HERE / "plan.json", "w"), indent=1)
 open(HERE / "design-notes.txt", "w").write("\n".join(notes) + "\n")

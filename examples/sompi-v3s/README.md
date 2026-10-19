@@ -37,8 +37,10 @@ all six export gates pass, 13 Gerber layers in `out/fab/`. Full outputs in `evid
 ## What "orderable" does not mean
 
 The board passes design-rule and connectivity checks. It has not been simulated or built.
-USB D+/D−, the Ethernet TX/RX pairs and the MIPI CSI-2 lanes are routed as single-ended traces
-(someda has no differential-pair routing or length matching yet). The HR911105A LED pin
+USB D+/D− (90 Ω), the Ethernet TX/RX pairs and the MIPI CSI-2 lanes (100 Ω) are declared as
+`pairs` and routed as coupled pairs with measured intra-pair skew (see `evidence/README.md`);
+pair-to-pair (clock-to-data) matching is not enforced, and a pair whose P/N order differs at its
+two ends is crossed through a via at the far tails. The HR911105A LED pin
 polarity and the 40-pin LCD pinout follow common conventions and must be checked against the
 parts you buy. The TPS562200 feedback dividers (33.2k/10k → 3.30 V, 5.62k/10k → 1.195 V) and
 the V3s rail assignments follow the datasheet table; AVCC and VCC-PLL are on a dedicated 3.0 V

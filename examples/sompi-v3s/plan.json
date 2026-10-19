@@ -27,6 +27,43 @@
    "priority": 1
   }
  ],
+ "pairs": [
+  {
+   "p": "USB_DP_J",
+   "n": "USB_DM_J",
+   "z_diff": 90
+  },
+  {
+   "p": "USB_DP",
+   "n": "USB_DM",
+   "z_diff": 90
+  },
+  {
+   "p": "ETH_TXP",
+   "n": "ETH_TXN",
+   "z_diff": 100
+  },
+  {
+   "p": "ETH_RXP",
+   "n": "ETH_RXN",
+   "z_diff": 100
+  },
+  {
+   "p": "CAM_MCSI_D0P",
+   "n": "CAM_MCSI_D0N",
+   "z_diff": 100
+  },
+  {
+   "p": "CAM_MCSI_D1P",
+   "n": "CAM_MCSI_D1N",
+   "z_diff": 100
+  },
+  {
+   "p": "CAM_MCSI_CKP",
+   "n": "CAM_MCSI_CKN",
+   "z_diff": 100
+  }
+ ],
  "components": [
   {
    "reference": "U1",
@@ -1933,28 +1970,19 @@
    ]
   },
   {
-   "name": "CAM_MCSI_D0N",
+   "name": "CAM_MCSI_D0P",
    "pins": [
-    "U1:82",
+    "U1:81",
     "J5:2"
    ],
    "freq_hz": 500000000.0,
    "role": "highspeed"
   },
   {
-   "name": "CAM_MCSI_D0P",
+   "name": "CAM_MCSI_D0N",
    "pins": [
-    "U1:81",
+    "U1:82",
     "J5:3"
-   ],
-   "freq_hz": 500000000.0,
-   "role": "highspeed"
-  },
-  {
-   "name": "CAM_MCSI_D1N",
-   "pins": [
-    "U1:84",
-    "J5:5"
    ],
    "freq_hz": 500000000.0,
    "role": "highspeed"
@@ -1963,16 +1991,16 @@
    "name": "CAM_MCSI_D1P",
    "pins": [
     "U1:83",
-    "J5:6"
+    "J5:5"
    ],
    "freq_hz": 500000000.0,
    "role": "highspeed"
   },
   {
-   "name": "CAM_MCSI_CKN",
+   "name": "CAM_MCSI_D1N",
    "pins": [
-    "U1:87",
-    "J5:8"
+    "U1:84",
+    "J5:6"
    ],
    "freq_hz": 500000000.0,
    "role": "highspeed"
@@ -1981,6 +2009,15 @@
    "name": "CAM_MCSI_CKP",
    "pins": [
     "U1:86",
+    "J5:8"
+   ],
+   "freq_hz": 500000000.0,
+   "role": "highspeed"
+  },
+  {
+   "name": "CAM_MCSI_CKN",
+   "pins": [
+    "U1:87",
     "J5:9"
    ],
    "freq_hz": 500000000.0,

@@ -1,5 +1,5 @@
 ─── Stage 1: Planning circuit ───
-  (plan injected from /root/pcb/sompi/board/plan.json — SOMEDA_PLAN_FILE)
+  (plan injected from plan.json — SOMEDA_PLAN_FILE)
 ─── Stage 2: Generating KiCad project files ───
   footprint    U1 SomPi:eLQFP-128_14x14mm_P0.4mm_EP5.72x5.72mm_ThermalVias 138 pads, courtyard 17.3x17.3mm
   footprint    C1 Capacitor_SMD:C_0402_1005Metric                         2 pads, courtyard 1.8x0.9mm
@@ -135,205 +135,188 @@
   footprint    H4 MountingHole:MountingHole_2.7mm_M2.5                    1 pads, courtyard 5.9x5.9mm
 ─── Stage 2b: Deterministic placement (real courtyards) ───
   silkscreen: 27 reference(s) have no clear spot and go on F.Fab instead
-  plane +1V8 on In4.Cu: region x 45.7..56.2 y 27.1..41.2 (priority 1)
+  plane +1V8 on In4.Cu: region x 44.2..57.7 y 25.6..42.7 (priority 1)
 ─── Stage 2c: Autorouting (6 layers: signals on F.Cu/In2.Cu/B.Cu, planes In1.Cu=GND In3.Cu=+3V3 In4.Cu=+1V2 In4.Cu=+1V8; trace 0.127mm, clearance 0.127mm, via 0.35/0.2mm) ───
+  pair USB_DP_J/USB_DM_J: 90 Ω → w 0.1466 mm / gap 0.1778 mm, skew budget 1.100 mm (JLCPCB impedance calculator 2026-10-19, JLC06161H-3313 L1/L2)
+  pair USB_DP/USB_DM: 90 Ω → w 0.1466 mm / gap 0.1778 mm, skew budget 1.100 mm (JLCPCB impedance calculator 2026-10-19, JLC06161H-3313 L1/L2)
+  pair ETH_TXP/ETH_TXN: 100 Ω → w 0.1191 mm / gap 0.2032 mm, skew budget 0.250 mm (JLCPCB impedance calculator 2026-10-19, JLC06161H-3313 L1/L2)
+  pair ETH_RXP/ETH_RXN: 100 Ω → w 0.1191 mm / gap 0.2032 mm, skew budget 0.250 mm (JLCPCB impedance calculator 2026-10-19, JLC06161H-3313 L1/L2)
+  pair CAM_MCSI_D0P/CAM_MCSI_D0N: 100 Ω → w 0.1191 mm / gap 0.2032 mm, skew budget 0.150 mm (JLCPCB impedance calculator 2026-10-19, JLC06161H-3313 L1/L2)
+  pair CAM_MCSI_D1P/CAM_MCSI_D1N: 100 Ω → w 0.1191 mm / gap 0.2032 mm, skew budget 0.150 mm (JLCPCB impedance calculator 2026-10-19, JLC06161H-3313 L1/L2)
+  pair CAM_MCSI_CKP/CAM_MCSI_CKN: 100 Ω → w 0.1191 mm / gap 0.2032 mm, skew budget 0.150 mm (JLCPCB impedance calculator 2026-10-19, JLC06161H-3313 L1/L2)
+  pair/impedance layers: F.Cu, In2.Cu
   net X24M_IN: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
   net X24M_OUT: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
-  net USB_DP_J: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
-  net USB_DM_J: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
-  net USB_DP: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
-  net USB_DM: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
-  net ETH_TXP: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
-  net ETH_TXN: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
-  net ETH_RXP: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
-  net ETH_RXN: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
   net SD_CLK_SOC: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
   net SD_CLK: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
   net SPI0_CLK: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
   net LCD_CLK_SOC: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
   net LCD_CLK: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
-  net CAM_MCSI_D0N: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
-  net CAM_MCSI_D0P: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
-  net CAM_MCSI_D1N: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
-  net CAM_MCSI_D1P: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
-  net CAM_MCSI_CKN: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
-  net CAM_MCSI_CKP: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
   net CAM_MCLK_SOC: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
   net CAM_MCLK: 50Ω target → 0.1425mm on JLC06161H-3313 (JLCPCB impedance calculator via forum.kicad.info/t/69673 (JLC06161-3313B))
-  routed 192 of 192 connections (0 unrouted), 220 plane fanouts, 130 escape vias (32 unused)
+  pair USB_DP_J/USB_DM_J: coupled 4.4 mm on F.Cu, tails ≤ 7.1 mm, len P 12.32 / N 12.72 mm, skew -0.395 mm (budget 1.100), 1 corner(s), 0 bump(s)
+  pair USB_DP/USB_DM: coupled 20.2 mm on F.Cu, tails ≤ 5.3 mm, len P 25.55 / N 25.53 mm, skew +0.014 mm (budget 1.100), 3 corner(s), 0 bump(s), P/N order differs at the two ends: far tails cross through a via
+  pair ETH_TXP/ETH_TXN: coupled 16.9 mm on F.Cu, tails ≤ 4.3 mm, len P 21.94 / N 21.93 mm, skew +0.010 mm (budget 0.250), 1 corner(s), 0 bump(s)
+  pair ETH_RXP/ETH_RXN: coupled 15.2 mm on F.Cu, tails ≤ 10.5 mm, len P 34.01 / N 34.12 mm, skew -0.117 mm (budget 0.250), 3 corner(s), 0 bump(s)
+  pair CAM_MCSI_D0P/CAM_MCSI_D0N: coupled 29.8 mm on F.Cu, tails ≤ 1.7 mm, len P 32.54 / N 32.54 mm, skew +0.000 mm (budget 0.150), 4 corner(s), 1 bump(s)
+  pair CAM_MCSI_D1P/CAM_MCSI_D1N: coupled 27.2 mm on F.Cu, tails ≤ 17.1 mm, len P 46.00 / N 45.88 mm, skew +0.127 mm (budget 0.150), 4 corner(s), 0 bump(s)
+  pair CAM_MCSI_CKP/CAM_MCSI_CKN: coupled 25.4 mm on F.Cu, tails ≤ 9.4 mm, len P 40.41 / N 40.41 mm, skew +0.000 mm (budget 0.150), 8 corner(s), 0 bump(s)
+  routed 194 of 194 connections (0 unrouted), 218 plane fanouts, 101 escape vias (31 unused)
 ─── Stage 2d: physics audit (frequency / SI / thermal) ───
-  net      GND:        DC role=ground     z_target=None len=20.8mm vias=99
-  net     +3V3:        DC role=power      z_target=None len=14.4mm vias=52
-  net     +1V2:        DC role=digital    z_target=None len=21.7mm vias=24
-  net     +1V8:        DC role=power      z_target=None len=138.4mm vias=19
-  net     +3V0:        DC role=power      z_target=None len=36.8mm vias=9
+  net      GND:        DC role=ground     z_target=None len=25.5mm vias=99
+  net     +3V3:        DC role=power      z_target=None len=19.1mm vias=52
+  net     +1V2:        DC role=power      z_target=None len=30.0mm vias=22
+  net     +1V8:        DC role=power      z_target=None len=180.3mm vias=24
+  net     +3V0:        DC role=power      z_target=None len=38.6mm vias=9
   net  RTC_VIO:        DC role=digital    z_target=None len=18.5mm vias=1
-  net     AGND:        DC role=ground     z_target=None len=22.9mm vias=3
-  net HPVCC_BP:        DC role=digital    z_target=None len=17.0mm vias=3
-  net   SVREF0:        DC role=digital    z_target=None len=17.7mm vias=4
-  net   SVREF1:        DC role=digital    z_target=None len=11.8mm vias=2
-  net      SZQ:        DC role=digital    z_target=None len=14.5mm vias=1
-  net     VRA1:        DC role=digital    z_target=None len=19.0mm vias=3
-  net     VRA2:        DC role=digital    z_target=None len=13.8mm vias=2
-  net EPHY_RTX:        DC role=digital    z_target=None len=8.5mm vias=2
-  net  X24M_IN:     24MHz role=clock      z_target=Some(50.0) len=13.2mm vias=3
-  net X24M_OUT:     24MHz role=clock      z_target=Some(50.0) len=13.2mm vias=2
-  net  X32K_IN:     33kHz role=clock      z_target=None len=17.4mm vias=4
-  net X32K_OUT:     33kHz role=clock      z_target=None len=11.7mm vias=1
+  net     AGND:        DC role=ground     z_target=None len=22.2mm vias=7
+  net HPVCC_BP:        DC role=digital    z_target=None len=17.4mm vias=3
+  net   SVREF0:        DC role=digital    z_target=None len=19.2mm vias=4
+  net   SVREF1:        DC role=digital    z_target=None len=12.2mm vias=3
+  net      SZQ:        DC role=digital    z_target=None len=14.5mm vias=2
+  net     VRA1:        DC role=digital    z_target=None len=19.6mm vias=4
+  net     VRA2:        DC role=digital    z_target=None len=13.7mm vias=3
+  net EPHY_RTX:        DC role=digital    z_target=None len=10.0mm vias=2
+  net  X24M_IN:     24MHz role=clock      z_target=Some(50.0) len=28.7mm vias=4
+  net X24M_OUT:     24MHz role=clock      z_target=Some(50.0) len=18.4mm vias=3
+  net  X32K_IN:     33kHz role=clock      z_target=None len=16.9mm vias=4
+  net X32K_OUT:     33kHz role=clock      z_target=None len=9.8mm vias=3
   net  RESET_N:        DC role=digital    z_target=None len=50.2mm vias=3
-  net   LRADC0:        DC role=digital    z_target=None len=48.4mm vias=4
+  net   LRADC0:        DC role=digital    z_target=None len=56.9mm vias=5
   net     KEY1:        DC role=digital    z_target=None len=8.5mm vias=0
   net  PWR_LED:        DC role=digital    z_target=None len=1.5mm vias=0
   net STAT_LED:        DC role=digital    z_target=None len=6.0mm vias=0
   net  PB3_LED:        DC role=digital    z_target=None len=9.8mm vias=2
-  net  VBUS_IN:        DC role=power      z_target=None len=26.9mm vias=4
-  net      CC1:        DC role=digital    z_target=None len=11.7mm vias=2
-  net      CC2:        DC role=digital    z_target=None len=17.5mm vias=2
-  net USB_DP_J:        DC role=highspeed  z_target=Some(50.0) len=9.9mm vias=3
-  net USB_DM_J:        DC role=highspeed  z_target=Some(50.0) len=14.2mm vias=3
-  net     VBUS:        DC role=power      z_target=None len=166.6mm vias=10
-  net   USB_DP:    480MHz role=highspeed  z_target=Some(50.0) len=24.4mm vias=2
-  net   USB_DM:    480MHz role=highspeed  z_target=Some(50.0) len=22.9mm vias=2
+  net  VBUS_IN:        DC role=power      z_target=None len=26.5mm vias=5
+  net      CC1:        DC role=digital    z_target=None len=11.6mm vias=2
+  net      CC2:        DC role=digital    z_target=None len=18.8mm vias=2
+  net USB_DP_J:        DC role=highspeed  z_target=Some(50.0) len=14.0mm vias=4
+  net USB_DM_J:        DC role=highspeed  z_target=Some(50.0) len=14.4mm vias=0
+  net     VBUS:        DC role=power      z_target=None len=169.3mm vias=10
+  net   USB_DP:    480MHz role=highspeed  z_target=Some(50.0) len=25.3mm vias=2
+  net   USB_DM:    480MHz role=highspeed  z_target=Some(50.0) len=25.3mm vias=2
   net    U2_SW:        DC role=power      z_target=None len=16.6mm vias=3
   net    U2_FB:        DC role=digital    z_target=None len=7.0mm vias=0
   net   U2_BST:        DC role=digital    z_target=None len=9.8mm vias=0
   net    U3_SW:        DC role=power      z_target=None len=14.2mm vias=4
   net    U3_FB:        DC role=digital    z_target=None len=9.8mm vias=3
   net   U3_BST:        DC role=digital    z_target=None len=8.1mm vias=0
-  net  ETH_TXP:    125MHz role=highspeed  z_target=Some(50.0) len=28.4mm vias=3
-  net  ETH_TXN:    125MHz role=highspeed  z_target=Some(50.0) len=28.1mm vias=2
-  net  ETH_RXP:    125MHz role=highspeed  z_target=Some(50.0) len=43.4mm vias=1
-  net  ETH_RXN:    125MHz role=highspeed  z_target=Some(50.0) len=31.5mm vias=2
-  net  ETH_VCC:        DC role=power      z_target=None len=19.3mm vias=7
-  net ETH_LED_LINK:        DC role=digital    z_target=None len=38.6mm vias=1
-  net ETH_LED_SPD:        DC role=digital    z_target=None len=53.1mm vias=2
+  net  ETH_TXP:    125MHz role=highspeed  z_target=Some(50.0) len=30.6mm vias=2
+  net  ETH_TXN:    125MHz role=highspeed  z_target=Some(50.0) len=37.2mm vias=3
+  net  ETH_RXP:    125MHz role=highspeed  z_target=Some(50.0) len=44.3mm vias=4
+  net  ETH_RXN:    125MHz role=highspeed  z_target=Some(50.0) len=40.1mm vias=4
+  net  ETH_VCC:        DC role=power      z_target=None len=18.0mm vias=0
+  net ETH_LED_LINK:        DC role=digital    z_target=None len=38.0mm vias=1
+  net ETH_LED_SPD:        DC role=digital    z_target=None len=56.0mm vias=2
   net ETH_LED_A1:        DC role=digital    z_target=None len=7.5mm vias=0
   net ETH_LED_A2:        DC role=digital    z_target=None len=7.5mm vias=0
-  net    SD_D2:     50MHz role=digital    z_target=None len=61.1mm vias=4
-  net    SD_D3:     50MHz role=digital    z_target=None len=61.1mm vias=4
-  net   SD_CMD:     50MHz role=digital    z_target=None len=53.8mm vias=4
-  net    SD_D0:     50MHz role=digital    z_target=None len=45.6mm vias=3
-  net    SD_D1:     50MHz role=digital    z_target=None len=46.6mm vias=4
-  net SD_CLK_SOC:     50MHz role=clock      z_target=Some(50.0) len=20.4mm vias=2
-  net   SD_CLK:     50MHz role=clock      z_target=Some(50.0) len=53.0mm vias=2
-  net    SD_CD:        DC role=digital    z_target=None len=47.0mm vias=2
+  net    SD_D2:     50MHz role=digital    z_target=None len=61.6mm vias=4
+  net    SD_D3:     50MHz role=digital    z_target=None len=70.9mm vias=4
+  net   SD_CMD:     50MHz role=digital    z_target=None len=54.5mm vias=4
+  net    SD_D0:     50MHz role=digital    z_target=None len=45.7mm vias=3
+  net    SD_D1:     50MHz role=digital    z_target=None len=46.9mm vias=4
+  net SD_CLK_SOC:     50MHz role=clock      z_target=Some(50.0) len=20.3mm vias=2
+  net   SD_CLK:     50MHz role=clock      z_target=Some(50.0) len=53.6mm vias=2
+  net    SD_CD:        DC role=digital    z_target=None len=45.6mm vias=3
   net  SPI0_CS:        DC role=digital    z_target=None len=9.1mm vias=2
-  net SPI0_MISO:     50MHz role=digital    z_target=None len=10.3mm vias=2
+  net SPI0_MISO:     50MHz role=digital    z_target=None len=9.5mm vias=3
   net SPI0_MOSI:     50MHz role=digital    z_target=None len=13.3mm vias=2
-  net SPI0_CLK:     50MHz role=clock      z_target=Some(50.0) len=12.8mm vias=2
+  net SPI0_CLK:     50MHz role=clock      z_target=Some(50.0) len=13.6mm vias=2
   net LCD_LEDK:        DC role=digital    z_target=None len=11.6mm vias=1
-  net  LCD_PE4:     33MHz role=digital    z_target=None len=44.6mm vias=3
-  net  LCD_PE5:     33MHz role=digital    z_target=None len=39.1mm vias=2
-  net  LCD_PE6:     33MHz role=digital    z_target=None len=38.6mm vias=2
-  net  LCD_PE7:     33MHz role=digital    z_target=None len=34.8mm vias=3
-  net  LCD_PE8:     33MHz role=digital    z_target=None len=34.9mm vias=2
-  net  LCD_PE9:     33MHz role=digital    z_target=None len=32.8mm vias=3
+  net  LCD_PE4:     33MHz role=digital    z_target=None len=53.6mm vias=4
+  net  LCD_PE5:     33MHz role=digital    z_target=None len=41.8mm vias=3
+  net  LCD_PE6:     33MHz role=digital    z_target=None len=42.0mm vias=3
+  net  LCD_PE7:     33MHz role=digital    z_target=None len=41.9mm vias=2
+  net  LCD_PE8:     33MHz role=digital    z_target=None len=37.2mm vias=2
+  net  LCD_PE9:     33MHz role=digital    z_target=None len=33.5mm vias=2
   net LCD_PE10:     33MHz role=digital    z_target=None len=29.8mm vias=2
   net LCD_PE11:     33MHz role=digital    z_target=None len=30.4mm vias=2
   net LCD_PE12:     33MHz role=digital    z_target=None len=31.5mm vias=2
-  net LCD_PE13:     33MHz role=digital    z_target=None len=33.5mm vias=3
-  net LCD_PE14:     33MHz role=digital    z_target=None len=36.7mm vias=3
-  net LCD_PE15:     33MHz role=digital    z_target=None len=35.8mm vias=2
-  net LCD_PE16:     33MHz role=digital    z_target=None len=39.5mm vias=2
-  net LCD_PE17:     33MHz role=digital    z_target=None len=40.9mm vias=2
-  net LCD_PE18:     33MHz role=digital    z_target=None len=39.5mm vias=3
-  net LCD_PE19:     33MHz role=digital    z_target=None len=42.8mm vias=2
-  net LCD_PE23:     33MHz role=digital    z_target=None len=43.4mm vias=3
-  net LCD_PE24:     33MHz role=digital    z_target=None len=45.3mm vias=3
-  net LCD_CLK_SOC:     33MHz role=clock      z_target=Some(50.0) len=7.6mm vias=2
-  net  LCD_CLK:     33MHz role=clock      z_target=Some(50.0) len=34.9mm vias=2
-  net LCD_DISP:        DC role=digital    z_target=None len=37.8mm vias=2
-  net LCD_HSYNC:        DC role=digital    z_target=None len=38.2mm vias=2
-  net LCD_VSYNC:        DC role=digital    z_target=None len=36.6mm vias=3
-  net   LCD_DE:        DC role=digital    z_target=None len=39.4mm vias=2
-  net  BL_GATE:        DC role=digital    z_target=None len=8.1mm vias=3
-  net   BL_PWM:        DC role=digital    z_target=None len=45.3mm vias=4
-  net CAM_MCSI_D0N:    500MHz role=highspeed  z_target=Some(50.0) len=33.7mm vias=2
-  net CAM_MCSI_D0P:    500MHz role=highspeed  z_target=Some(50.0) len=33.7mm vias=4
-  net CAM_MCSI_D1N:    500MHz role=highspeed  z_target=Some(50.0) len=33.0mm vias=4
-  net CAM_MCSI_D1P:    500MHz role=highspeed  z_target=Some(50.0) len=32.4mm vias=2
-  net CAM_MCSI_CKN:    500MHz role=highspeed  z_target=Some(50.0) len=32.6mm vias=2
-  net CAM_MCSI_CKP:    500MHz role=highspeed  z_target=Some(50.0) len=31.8mm vias=2
-  net CAM_MCLK_SOC:     24MHz role=clock      z_target=Some(50.0) len=7.9mm vias=2
-  net CAM_MCLK:     24MHz role=clock      z_target=Some(50.0) len=53.1mm vias=3
-  net CAM_PWDN:        DC role=digital    z_target=None len=54.1mm vias=3
-  net CAM_RESET:        DC role=digital    z_target=None len=50.9mm vias=4
-  net  CAM_SCL:        DC role=digital    z_target=None len=49.0mm vias=5
-  net  CAM_SDA:        DC role=digital    z_target=None len=50.0mm vias=5
-  net     HP_L:        DC role=analog     z_target=None len=21.5mm vias=2
-  net     HP_R:        DC role=analog     z_target=None len=23.4mm vias=3
-  net HPCOM_OUT:        DC role=analog     z_target=None len=46.0mm vias=3
-  net    HPCOM:        DC role=digital    z_target=None len=9.5mm vias=2
+  net LCD_PE13:     33MHz role=digital    z_target=None len=35.1mm vias=3
+  net LCD_PE14:     33MHz role=digital    z_target=None len=40.6mm vias=3
+  net LCD_PE15:     33MHz role=digital    z_target=None len=40.9mm vias=3
+  net LCD_PE16:     33MHz role=digital    z_target=None len=44.5mm vias=3
+  net LCD_PE17:     33MHz role=digital    z_target=None len=45.5mm vias=3
+  net LCD_PE18:     33MHz role=digital    z_target=None len=47.8mm vias=3
+  net LCD_PE19:     33MHz role=digital    z_target=None len=48.0mm vias=3
+  net LCD_PE23:     33MHz role=digital    z_target=None len=51.3mm vias=4
+  net LCD_PE24:     33MHz role=digital    z_target=None len=53.2mm vias=3
+  net LCD_CLK_SOC:     33MHz role=clock      z_target=Some(50.0) len=8.3mm vias=2
+  net  LCD_CLK:     33MHz role=clock      z_target=Some(50.0) len=34.4mm vias=2
+  net LCD_DISP:        DC role=digital    z_target=None len=37.3mm vias=3
+  net LCD_HSYNC:        DC role=digital    z_target=None len=38.2mm vias=3
+  net LCD_VSYNC:        DC role=digital    z_target=None len=37.1mm vias=3
+  net   LCD_DE:        DC role=digital    z_target=None len=42.0mm vias=3
+  net  BL_GATE:        DC role=digital    z_target=None len=10.7mm vias=3
+  net   BL_PWM:        DC role=digital    z_target=None len=50.3mm vias=3
+  net CAM_MCSI_D0P:    500MHz role=highspeed  z_target=Some(50.0) len=32.5mm vias=0
+  net CAM_MCSI_D0N:    500MHz role=highspeed  z_target=Some(50.0) len=32.5mm vias=0
+  net CAM_MCSI_D1P:    500MHz role=highspeed  z_target=Some(50.0) len=45.7mm vias=2
+  net CAM_MCSI_D1N:    500MHz role=highspeed  z_target=Some(50.0) len=45.4mm vias=4
+  net CAM_MCSI_CKP:    500MHz role=highspeed  z_target=Some(50.0) len=39.9mm vias=4
+  net CAM_MCSI_CKN:    500MHz role=highspeed  z_target=Some(50.0) len=39.9mm vias=4
+  net CAM_MCLK_SOC:     24MHz role=clock      z_target=Some(50.0) len=7.7mm vias=2
+  net CAM_MCLK:     24MHz role=clock      z_target=Some(50.0) len=53.5mm vias=2
+  net CAM_PWDN:        DC role=digital    z_target=None len=54.0mm vias=3
+  net CAM_RESET:        DC role=digital    z_target=None len=55.6mm vias=3
+  net  CAM_SCL:        DC role=digital    z_target=None len=81.7mm vias=8
+  net  CAM_SDA:        DC role=digital    z_target=None len=111.5mm vias=8
+  net     HP_L:        DC role=analog     z_target=None len=24.3mm vias=2
+  net     HP_R:        DC role=analog     z_target=None len=23.6mm vias=2
+  net HPCOM_OUT:        DC role=analog     z_target=None len=45.5mm vias=5
+  net    HPCOM:        DC role=digital    z_target=None len=9.1mm vias=2
   net  HPCOMFB:        DC role=digital    z_target=None len=9.9mm vias=2
-  net I2C0_SDA:        DC role=digital    z_target=None len=35.9mm vias=2
-  net I2C0_SCL:        DC role=digital    z_target=None len=31.2mm vias=4
-  net GPIO_PG0:        DC role=digital    z_target=None len=40.6mm vias=4
-  net UART2_TX:        DC role=digital    z_target=None len=24.8mm vias=2
-  net UART2_RX:        DC role=digital    z_target=None len=22.7mm vias=2
-  net GPIO_PG1:        DC role=digital    z_target=None len=41.4mm vias=3
-  net     PWM1:        DC role=digital    z_target=None len=21.8mm vias=1
-  net GPIO_PG4:        DC role=digital    z_target=None len=46.1mm vias=2
-  net GPIO_PG5:        DC role=digital    z_target=None len=43.8mm vias=4
-  net UART0_TX:        DC role=digital    z_target=None len=53.0mm vias=2
+  net I2C0_SDA:        DC role=digital    z_target=None len=35.6mm vias=2
+  net I2C0_SCL:        DC role=digital    z_target=None len=32.9mm vias=2
+  net GPIO_PG0:        DC role=digital    z_target=None len=43.4mm vias=3
+  net UART2_TX:        DC role=digital    z_target=None len=24.9mm vias=2
+  net UART2_RX:        DC role=digital    z_target=None len=22.7mm vias=1
+  net GPIO_PG1:        DC role=digital    z_target=None len=40.9mm vias=3
+  net     PWM1:        DC role=digital    z_target=None len=21.7mm vias=1
+  net GPIO_PG4:        DC role=digital    z_target=None len=39.9mm vias=4
+  net GPIO_PG5:        DC role=digital    z_target=None len=89.5mm vias=6
+  net UART0_TX:        DC role=digital    z_target=None len=53.2mm vias=3
   net UART0_RX:        DC role=digital    z_target=None len=50.7mm vias=2
-  [warning] power-inductance GND: 56.5nH series L on power net — decouple close; V = L·di/dt
-  [warning] power-inductance +3V3: 30.8nH series L on power net — decouple close; V = L·di/dt
-  [warning] power-inductance +1V8: 56.3nH series L on power net — decouple close; V = L·di/dt
-  [warning] power-inductance VBUS: 35.5nH series L on power net — decouple close; V = L·di/dt
-  [warning] net-self-resonance CAM_MCSI_D0P: net LC self-resonance 723MHz close to operating 500MHz (L=13.4nH C=3.63pF) — oscillation/peaking risk
-  [warning] net-self-resonance CAM_MCSI_D1N: net LC self-resonance 735MHz close to operating 500MHz (L=13.2nH C=3.56pF) — oscillation/peaking risk
-  [warning] crosstalk-risk ETH_TXN↔ETH_RXP: 21 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk USB_DM_J↔CC1: 29 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk SVREF1↔+1V2: 21 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk GPIO_PG0↔LCD_PE18: 34 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk GPIO_PG0↔LCD_PE23: 42 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk CAM_MCSI_D1P↔CAM_MCSI_D0P: 110 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk CAM_MCSI_D1P↔CAM_MCSI_CKN: 114 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk PWM1↔GPIO_PG4: 31 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk PWM1↔I2C0_SDA: 45 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk PWM1↔I2C0_SCL: 52 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk LCD_VSYNC↔LCD_HSYNC: 36 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk +1V8↔CAM_RESET: 22 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk +1V8↔CAM_PWDN: 47 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk +1V8↔GPIO_PG4: 58 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk +1V8↔HPCOM_OUT: 33 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk +1V8↔CAM_MCSI_D1N: 22 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk +1V8↔CAM_SDA: 28 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk +1V8↔GPIO_PG5: 22 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk +1V8↔CAM_SCL: 26 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk LCD_PE19↔LCD_PE16: 43 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk LCD_PE19↔LCD_PE14: 22 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk CAM_RESET↔CAM_PWDN: 25 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk CAM_RESET↔HPCOM_OUT: 37 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk CAM_RESET↔CAM_SDA: 62 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk CAM_PWDN↔GPIO_PG4: 24 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk CAM_MCSI_D0P↔CAM_MCSI_CKN: 59 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk X32K_OUT↔EPHY_RTX: 24 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk ETH_RXP↔ETH_LED_LINK: 23 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk ETH_RXP↔ETH_LED_SPD: 42 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk SPI0_MOSI↔SPI0_CLK: 45 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk SPI0_MOSI↔CAM_SDA: 35 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk GPIO_PG4↔UART0_TX: 93 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk GPIO_PG4↔HPCOM_OUT: 22 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk GPIO_PG4↔GPIO_PG5: 30 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk SZQ↔SVREF0: 26 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk ETH_LED_LINK↔ETH_LED_SPD: 30 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk SPI0_CLK↔SPI0_CS: 21 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk SPI0_CLK↔CAM_SDA: 29 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk I2C0_SDA↔UART0_TX: 48 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk I2C0_SDA↔HPCOM_OUT: 22 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk LCD_PE15↔LCD_PE18: 22 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk LCD_PE15↔LCD_PE23: 22 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk LCD_PE15↔LCD_PE17: 25 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk UART2_TX↔UART2_RX: 37 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk LCD_PE18↔LCD_PE23: 30 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk HPCOM_OUT↔GPIO_PG5: 22 parallel-adjacent cells — apply 3W/5W spacing
-  [warning] crosstalk-risk CAM_SDA↔CAM_SCL: 40 parallel-adjacent cells — apply 3W/5W spacing
+  [info] pair-impedance USB_DP_J/USB_DM_J: 90 Ω differential: w 0.1466 / gap 0.1778 mm on JLC06161H-3313 — JLCPCB impedance calculator 2026-10-19, JLC06161H-3313 L1/L2
+  [info] pair-impedance USB_DP/USB_DM: 90 Ω differential: w 0.1466 / gap 0.1778 mm on JLC06161H-3313 — JLCPCB impedance calculator 2026-10-19, JLC06161H-3313 L1/L2
+  [info] pair-impedance ETH_TXP/ETH_TXN: 100 Ω differential: w 0.1191 / gap 0.2032 mm on JLC06161H-3313 — JLCPCB impedance calculator 2026-10-19, JLC06161H-3313 L1/L2
+  [info] pair-impedance ETH_RXP/ETH_RXN: 100 Ω differential: w 0.1191 / gap 0.2032 mm on JLC06161H-3313 — JLCPCB impedance calculator 2026-10-19, JLC06161H-3313 L1/L2
+  [info] pair-impedance CAM_MCSI_D0P/CAM_MCSI_D0N: 100 Ω differential: w 0.1191 / gap 0.2032 mm on JLC06161H-3313 — JLCPCB impedance calculator 2026-10-19, JLC06161H-3313 L1/L2
+  [info] pair-impedance CAM_MCSI_D1P/CAM_MCSI_D1N: 100 Ω differential: w 0.1191 / gap 0.2032 mm on JLC06161H-3313 — JLCPCB impedance calculator 2026-10-19, JLC06161H-3313 L1/L2
+  [info] pair-impedance CAM_MCSI_CKP/CAM_MCSI_CKN: 100 Ω differential: w 0.1191 / gap 0.2032 mm on JLC06161H-3313 — JLCPCB impedance calculator 2026-10-19, JLC06161H-3313 L1/L2
+  [info] crosstalk-breakout CAM_MCSI_CKN↔CAM_MCSI_D0P: 7.82mm parallel inside pad/escape breakout zones at 0.321mm gap (tolerated; rule ≥0.508mm elsewhere)
+  [info] crosstalk-breakout CAM_MCSI_CKN↔GND: 2.16mm parallel inside pad/escape breakout zones at 0.385mm gap (tolerated; rule ≥0.508mm elsewhere)
+  [info] crosstalk-breakout CAM_MCSI_D0N↔CAM_MCSI_D1P: 4.28mm parallel inside pad/escape breakout zones at 0.355mm gap (tolerated; rule ≥0.508mm elsewhere)
+  [info] crosstalk-breakout EPHY_RTX↔ETH_RXP: 2.40mm parallel inside pad/escape breakout zones at 0.385mm gap (tolerated; rule ≥0.508mm elsewhere)
+  [info] crosstalk-breakout ETH_RXN↔ETH_TXP: 5.59mm parallel inside pad/escape breakout zones at 0.321mm gap (tolerated; rule ≥0.508mm elsewhere)
+  [info] crosstalk-breakout LCD_PE14↔LCD_PE5: 3.94mm parallel inside pad/escape breakout zones at 0.127mm gap (tolerated; rule ≥0.254mm elsewhere)
+  [warning] decoupling-loop C12 (GND/+1V8): 4.40nH mounting loop — stubs 0.1mm (0.04nH) + 6.2mm (2.12nH), via pair 2.23nH; via / via
+  [warning] decoupling-loop C13 (GND/+1V8): 7.66nH mounting loop — stubs 0.1mm (0.04nH) + 15.6mm (5.33nH), via pair 2.28nH; via / via
+  [warning] decoupling-loop C14 (GND/+1V8): 5.59nH mounting loop — stubs 0.1mm (0.04nH) + 8.8mm (2.99nH), via pair 2.56nH; via / via
+  [warning] decoupling-loop C50 (GND/+1V8): 3.41nH mounting loop — stubs 0.1mm (0.04nH) + 7.7mm (2.64nH), via pair 0.73nH; via / no via
+  [warning] decoupling-loop C58 (GND/+1V8): 6.25nH mounting loop — stubs 0.1mm (0.04nH) + 16.4mm (5.59nH), via pair 0.61nH; via / no via
   [info] thermal-via-budget U1: plan ≥9 thermal vias under the pad (P=0.80W)
   [warning] density-too-high (board): density 147% > 70% — thermal crowding and router pain
+  [info] regulator-output-cap U2: TPS562200 output +3V3: 57.0 µF in 15 capacitor(s) ≥ 10 µF (TI SLVSCQ4 (TPS56220x): 10 µF minimum ceramic output)
+  [warning] switch-node U2_SW: 16.6 mm of copper, 3 via(s) — the di/dt loop: keep short (≤ 15 mm) and away from FB
+  [info] feedback-node U2_FB: 7.0 mm, 0 via(s) — high impedance node: ≤ 15 mm, no parallel run with the switch node
+  [info] regulator-output-cap U3: TPS562200 output +1V2: 54.7 µF in 10 capacitor(s) ≥ 10 µF (TI SLVSCQ4 (TPS56220x): 10 µF minimum ceramic output)
+  [info] switch-node U3_SW: 14.2 mm of copper, 4 via(s) — the di/dt loop: keep short (≤ 15 mm) and away from FB
+  [info] feedback-node U3_FB: 9.8 mm, 3 via(s) — high impedance node: ≤ 15 mm, no parallel run with the switch node
+  [info] regulator-output-cap U4: ME6211C18M5G output +3V3: 57.0 µF in 15 capacitor(s) ≥ 1 µF (Microne ME6211 datasheet: 1 µF ceramic output)
+  [info] regulator-output-cap U5: XC6206P302MR output +3V3: 57.0 µF in 15 capacitor(s) ≥ 1 µF (Torex XC6206 datasheet: 1 µF ceramic output)
+  [warning] crystal-trace X24M_IN: 28.7 mm, 4 via(s) — crystal nets: ≤ 10 mm, no vias, nothing fast nearby (18 pF load)
+  [warning] crystal-trace X24M_OUT: 18.4 mm, 3 via(s) — crystal nets: ≤ 10 mm, no vias, nothing fast nearby (18 pF load)
+  [warning] crystal-trace X32K_IN: 16.9 mm, 4 via(s) — crystal nets: ≤ 10 mm, no vias, nothing fast nearby (6 pF load)
+  [warning] crystal-trace X32K_OUT: 9.8 mm, 3 via(s) — crystal nets: ≤ 10 mm, no vias, nothing fast nearby (6 pF load)
+  [info] pdn +1V2: peak |Z| 0.194 Ω at 200.0 MHz vs target 0.480 Ω (10 capacitor(s))
+  [info] pdn +1V8: peak |Z| 0.400 Ω at 200.0 MHz vs target 1.034 Ω (9 capacitor(s))
+  [info] pdn +3V0: peak |Z| 0.378 Ω at 200.0 MHz vs target 6.000 Ω (4 capacitor(s))
+  [info] pdn +3V3: peak |Z| 0.115 Ω at 200.0 MHz vs target 2.853 Ω (15 capacitor(s))
+  [info] pdn VBUS: peak |Z| 0.688 Ω at 200.0 MHz vs target 3.571 Ω (3 capacitor(s))
 ─── Stage 3: kicad-cli ERC ───
 ─── Stage 4: kicad-cli DRC (zones refilled, report parsed) ───
-  0 error(s), 32 warning(s), 0 unconnected, 0 fab-blocking [via_dangling×32] [report circuit-drc.rpt]
+  0 error(s), 31 warning(s), 0 unconnected, 0 fab-blocking [via_dangling×31] [report circuit-drc.rpt]
 ─── Stage 5: kicad-cli exports ───
 ─── Stage 6: someda verification ───
 ─── Stage 7: export preflight (skill 103) ───
@@ -346,22 +329,25 @@
 ─── HONEST-DONE: all 6 gates pass ───
 
 ─── BUILD COMPLETE ───
-  project:  /root/pcb/sompi/board/out
-  schematic: /root/pcb/sompi/board/out/circuit.kicad_sch
-  board:     /root/pcb/sompi/board/out/circuit.kicad_pcb
+  project:  out
+  schematic: out/circuit.kicad_sch
+  board:     out/circuit.kicad_pcb
   plan:      132 components, 114 nets
 
   ✓ [plan] 132 components, 114 nets
   ✓ [footprints] 132 real KiCad library footprints, 6 copper layers
   ✓ [pin-coverage] every plan pin has a pad (500 pins across 132 footprints)
   ✓ [placement] placed 132 footprint(s) on 90x60mm, 128 hint(s), 0 courtyard overlap(s)
-  ✓ [route] routed 192 of 192 connections (0 unrouted), 220 plane fanouts, 130 escape vias (32 unused)
-  ✓ [si-audit] 0 error(s), 53 warning(s); stray L/C measured per net
+  ✓ [route] routed 194 of 194 connections (0 unrouted), 218 plane fanouts, 101 escape vias (31 unused)
+  ✓ [pairs] 7 pair(s) declared, 7 trunk(s) coupled, 7 within skew budget
+  ✓ [si-audit] 0 error(s), 5 warning(s); stray L/C measured per net
   ✓ [thermal-audit] 0 error(s), 1 warning(s)
+  ✓ [stability-audit] 0 error(s), 5 warning(s): regulator output capacitance, crystal loads and traces, switch/feedback nodes
+  ✓ [pdn-audit] 5 rail(s) swept 100 kHz–200 MHz, 0 above the ΔV/ΔI target (model: MLCC ESR/ESL classes + measured mounting loops; above 200 MHz the package/die decoupling owns the rail)
   ✓ [fab-scope] JLC06161H-3313: trace 0.127/0.127mm, via 0.35/0.2mm inside JLCPCB 6-layer scope (±10% impedance)
-  ✓ [generate] wrote /root/pcb/sompi/board/out/circuit.kicad_sch and /root/pcb/sompi/board/out/circuit.kicad_pcb
+  ✓ [generate] wrote out/circuit.kicad_sch and out/circuit.kicad_pcb
   ✓ [kicad-erc] [exit 5]
-  ✓ [kicad-drc] 0 error(s), 32 warning(s), 0 unconnected, 0 fab-blocking [via_dangling×32] [report circuit-drc.rpt]
+  ✓ [kicad-drc] 0 error(s), 31 warning(s), 0 unconnected, 0 fab-blocking [via_dangling×31] [report circuit-drc.rpt]
   ✓ [export-gerbers] [exit 0] (13 Gerber layers written: 6 copper + mask/paste/silk/outline)
   ✓ [export-drill] [exit 0]
   ✓ [export-pos] [exit 0]
@@ -372,3 +358,4 @@
   ✓ [export-preflight] drc=PASS shorts=PASS unrouted=PASS pours=PASS gerbers=PASS drill=PASS
 
 honest-done: VERIFIED — all stages passed
+exit 0

@@ -1,11 +1,11 @@
 Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12: opening (0.0, 1.0) -> top_edge with rotation 180
-USB D+/D- are a 90 ohm differential pair routed single-ended by this engine (no pair routing)
+USB D+/D- declared as 90 ohm differential pairs (J1-U8 and U8-U1): coupled routing on the GND-referenced outer layer, intra-pair skew budget 1.1 mm (Toradex 102492 USB 2.0 table)
 Connector_RJ:RJ45_Hanrun_HR911105A_Horizontal: opening (0.0, 1.0) -> right_edge with rotation 90
 RJ45 LED pins 9/10 and 11/12 assumed anode/cathode order; verify against the HR911105A drawing
-Ethernet TX/RX are 100 ohm differential pairs routed single-ended by this engine
+Ethernet TX/RX declared as 100 ohm differential pairs, intra-pair skew budget 0.25 mm (Toradex 102492 Ethernet table)
 Connector_Card:microSD_HC_Hirose_DM3AT-SF-PEJM5: opening (0.0, 1.0) -> top_edge with rotation 180
 Connector_FFC-FPC:Hirose_FH12-40S-0.5SH_1x40-1MP_P0.50mm_Horizontal: opening (0.0, 1.0) -> left_edge with rotation 270
 LCD connector uses the common 40-pin 0.5 mm RGB TFT pinout (LEDK/LEDA/GND/VDD, R0-7, G0-7, B0-7, GND, CLK, DISP, HSYNC, VSYNC, DE, NC, GND, touch); LSBs left open
 Connector_FFC-FPC:Hirose_FH12-24S-0.5SH_1x24-1MP_P0.50mm_Horizontal: opening (0.0, 1.0) -> right_edge with rotation 90
-MIPI CSI-2 lanes are 100 ohm differential pairs routed single-ended by this engine
+MIPI CSI-2 lanes declared as 100 ohm differential pairs, intra-pair skew budget 0.15 mm (Toradex 102492 CSI table); clock-to-data skew not yet enforced. The 24-pin camera FPC pinout is a convention (GND/D0/GND/D1/GND/CK/GND/MCLK/PWDN/RESET/SCL/SDA/3V3/GND/1V8/GND); P sits on the lower pin number of each pair so the P/N order matches the SoC side — check against the camera module, a swapped module routes with a via crossover
 Connector_Audio:Jack_3.5mm_CUI_SJ-3523-SMT_Horizontal: opening (1.0, 0.0) -> top_edge with rotation 90
