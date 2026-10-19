@@ -35,7 +35,7 @@ Follow the contract in [CONTRACT.md](../skills/someda/references/CONTRACT.md):
 python3 "${CLAUDE_PLUGIN_ROOT}/scripts/fetch-libs.py" --plan plan.json --apply
 ```
 
-Every component ends as FOUND, FETCHED (KiCad GitLab, LCSC/EasyEDA by `lcsc`/`mpn`, or an imported vendor zip) or MISSING with what to do. For a MISSING part: add `"lcsc": "C…"` or `"mpn"` to the plan, or download the KiCad zip from UltraLibrarian / SnapEDA / Mouser / Digi-Key and run `fetch-libs.py --import <zip> --apply`; then re-run. Never build with a MISSING footprint.
+Every component ends as FOUND, FETCHED (KiCad GitLab, LCSC/EasyEDA by `lcsc`/`mpn`, or an imported vendor zip) or MISSING with what to do. For a MISSING part: add `"lcsc": "C…"` or `"mpn"` to the plan, or download the KiCad zip from UltraLibrarian / SnapEDA / Mouser / Digi-Key and run `fetch-libs.py --import <zip> --apply`; then re-run. A MISSING name that is only a misspelling of a KiCad library footprint is corrected by the engine's first repair round (it prints the substitution as a `repair:` line); a part the libraries really lack must be fetched first — never build with one.
 
 ## 4. Build (the engine repairs and retries by itself)
 
