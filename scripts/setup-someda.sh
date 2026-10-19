@@ -12,14 +12,42 @@
 set -euo pipefail
 
 SOMEDA_REPO="kabidey/someda"
-SOMEDA_VERSION="${SOMEDA_VERSION:-v0.6.1}"
+SOMEDA_VERSION="${SOMEDA_VERSION:-v0.7.0}"
 INSTALL_DIR="${HOME}/.local/share/someda/bin"
 
 err() { echo "someda-setup: $*" >&2; exit 1; }
 
+# ── Libraries the build needs beyond the engine binary ──────────────────────
+# KiCad footprints + 3D models (component bodies in the renders) and the
+# LCSC/EasyEDA converter used by scripts/fetch-libs.py. Best effort: each
+# step reports what it could not do and the build later says which models
+# are missing.
+setup_libraries() {
+    local data="${HOME}/.local/share/someda"
+    mkdir -p "${data}/footprints" "${data}/3dmodels" "${data}/easyeda" "${data}/symbols"
+    if [ ! -d /usr/share/kicad/3dmodels ] && [ ! -d /usr/local/share/kicad/3dmodels ] && [ -z "${KICAD10_3DMODEL_DIR:-}${KICAD9_3DMODEL_DIR:-}" ]; then
+        if command -v apt-get >/dev/null 2>&1; then
+            local sudo=""
+            [ "$(id -u)" -ne 0 ] && command -v sudo >/dev/null 2>&1 && sudo="sudo"
+            echo "someda-setup: installing kicad-packages3d and kicad-footprints (3D bodies for the renders)" >&2
+            DEBIAN_FRONTEND=noninteractive ${sudo} apt-get install -y -q kicad-packages3d kicad-footprints >&2 || echo "someda-setup: could not install kicad-packages3d; renders will show pads without bodies (run: apt-get install kicad-packages3d)" >&2
+        else
+            echo "someda-setup: no KiCad 3D model library found; install KiCad's packages3D or set KICAD10_3DMODEL_DIR" >&2
+        fi
+    fi
+    if [ ! -x "${data}/venv/bin/easyeda2kicad" ]; then
+        if command -v python3 >/dev/null 2>&1; then
+            echo "someda-setup: installing easyeda2kicad (LCSC/EasyEDA footprints + 3D models) into ${data}/venv" >&2
+            python3 -m venv "${data}/venv" >/dev/null 2>&1 && "${data}/venv/bin/pip" install --quiet easyeda2kicad >&2 || echo "someda-setup: easyeda2kicad not installed (python3 -m venv failed); LCSC fetches unavailable" >&2
+        fi
+    fi
+}
+
+
 # 1. Explicit override
 if [ -n "${SOMEDA_BIN:-}" ]; then
     [ -x "${SOMEDA_BIN}" ] || err "SOMEDA_BIN is set but not executable: ${SOMEDA_BIN}"
+    setup_libraries
     echo "${SOMEDA_BIN}"
     exit 0
 fi
@@ -46,6 +74,7 @@ esac
 mkdir -p "${INSTALL_DIR}"
 DEST="${INSTALL_DIR}/${BIN}"
 if [ -x "${DEST}" ]; then
+    setup_libraries
     echo "${DEST}"
     exit 0
 fi
@@ -65,6 +94,7 @@ build_from_source() {
         || err "git clone failed"
     (cd "${TMP}/src" && cargo build --release --quiet) || err "cargo build failed"
     install -m 0755 "${TMP}/src/target/release/${BIN}" "${DEST}"
+    setup_libraries
     echo "${DEST}"
     exit 0
 }
