@@ -12,7 +12,7 @@
 set -euo pipefail
 
 SOMEDA_REPO="kabidey/someda"
-SOMEDA_VERSION="${SOMEDA_VERSION:-v0.6.0}"
+SOMEDA_VERSION="${SOMEDA_VERSION:-v0.6.1}"
 INSTALL_DIR="${HOME}/.local/share/someda/bin"
 
 err() { echo "someda-setup: $*" >&2; exit 1; }

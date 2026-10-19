@@ -30,9 +30,9 @@ SOMEDA_FOOTPRINT_DIRS=$PWD/lib SOMEDA_PLAN_FILE=plan.json SOMEDA_PROJECT_DIR=out
   someda ai build "SomPi V3s 6-layer SBC"
 ```
 
-Result with someda 0.6.0 (2026-10-19): 192 of 192 connections routed, 220 plane fanouts,
-130 escape vias, kicad-cli DRC 0 errors / 0 unconnected, all six export gates pass, 13 Gerber
-layers in `out/fab/`.
+Result with someda 0.6.1 (2026-10-19): 192 of 192 connections routed, 220 plane fanouts,
+130 escape vias (32 unused), kicad-cli DRC 0 errors / 0 unconnected / 0 silkscreen findings,
+all six export gates pass, 13 Gerber layers in `out/fab/`. Full outputs in `evidence/`.
 
 ## What "orderable" does not mean
 
