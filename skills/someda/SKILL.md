@@ -47,28 +47,31 @@ This finds `someda` on PATH, honors `SOMEDA_BIN`, downloads the compiled release
 # Step 1 — Plan (you are the planner)
 
 Read the user's description carefully and write `plan.json`:
-- Real part numbers and values (E12 resistors, standard caps, real ICs)
+- Real part numbers and values (E12 resistors, standard caps, real ICs); `mpn` on every non-generic part and `lcsc` (LCSC part number) when known — the BOM, the JLCPCB assembly files and the library fetch use them
 - Real pin numbers from the part's datasheet pinout — and matching the footprint's pad numbers
 - Per-net frequency/role declarations where the intent knows them
 - Per-component power where it matters
 - Sane circuit design: decoupling, pull-ups where needed, correct topologies
-- For 4/6-layer boards: `layers`, `planes` (GND on In1.Cu; the main rail on In3.Cu; a second GND or a split power island with `"region": "auto"` and `priority`), a `board` size, and edge positions for every connector
+- For 4/6-layer boards: `layers`, `planes` (GND on In1.Cu; the main rail on In3.Cu; a second GND or a split power island with `"region": "auto"` and `priority`), a `board` size, and an edge `position` (+ `edge_at` slot) for every connector on the edge nearest its SoC pins — no `rotation`: the engine reads the connector's opening from the footprint geometry, turns it toward the edge and sets the courtyard flush with the edge (`edge_overhang_mm` when the datasheet wants the shell past the edge, e.g. 0.8 for a USB-C receptacle); it prints each decision
 - Every differential interface declared in `pairs` (USB 90 Ω; Ethernet, MIPI, LVDS, PCIe 100 Ω) — one pair per net segment (SoC→ESD and ESD→connector are two pairs); series terminations on fast single-ended clocks (a 22–33 Ω resistor at the driver) or a `termination` declaration
 
 If the user's description is ambiguous about something that changes the plan materially (pinout, supply voltage, part choice), ask ONE focused question. Otherwise make the conventional choice and note it.
 
-# Step 2 — Build (the engine does everything else)
+# Step 2 — Schematic for approval, libraries, then the build
 
-```bash
-SOMEDA_PLAN_FILE=plan.json "$SOMEDA" ai build "<the user's description>"
-```
+1. `SOMEDA_STOP_AFTER=schematic SOMEDA_PLAN_FILE=plan.json "$SOMEDA" ai build "<description>"` writes the schematic (readable column layout on the smallest fitting sheet, labelled pins, project symbol library); export it with `kicad-cli sch export pdf` and show the user the PDF path. The user approves or edits the plan.
+2. `python3 "$CLAUDE_PLUGIN_ROOT/scripts/fetch-libs.py" --plan plan.json --apply` pulls every footprint and 3D model the plan needs that the local KiCad libraries lack: KiCad's GitLab repositories, LCSC/EasyEDA by `lcsc` (or `mpn` resolved through JLCPCB's parts search), and KiCad zips you downloaded from UltraLibrarian, SnapEDA, Mouser or Digi-Key (`--import`). It never guesses: every part ends FOUND, FETCHED (with its source) or MISSING with the plan edit to make. Do not build with a MISSING footprint.
+3. ```bash
+   SOMEDA_PLAN_FILE=plan.json "$SOMEDA" ai build "<the user's description>"
+   ```
+   The engine runs its own repair rounds (`SOMEDA_REPAIR_ROUNDS`, default 3): closest-library-footprint substitution, a 100 nF capacitor added where ERC finds an IC rail without one, output capacitance added where a regulator's datasheet minimum is missing, the board grown (×1.15, at most twice) when parts overlap, connections stay unrouted or a pair fails — only when the plan fixes no `board` size. Within a build it also moves an edge connector that finds no room to an adjacent edge (re-oriented from its footprint) and grows a split-plane island to reach its decoupling capacitors. It prints `repair:` lines for what it changed and `suggest:` lines (exact plan edits) for what it could not; the plan it finally built is `someda-build/plan.built.json`. Apply the `suggest:` edits verbatim to `plan.json` and rebuild; never hand-edit coordinates or rotations — edge connectors are rotated toward their edge by the engine from the footprint geometry.
 
 The engine runs:
 1. Plan validation, **footprint resolution** (real library geometry or reported synthetic fallback) and **pin coverage** — every plan pin must exist as a pad
 2. **Deterministic placement** — real courtyards, connectors flush to their edges, parts next to the pins they connect to, keep-out ring around fine-pitch ICs for escape vias, hot parts ≥15mm apart; no courtyard overlaps
 3. **Routing** — design rules per layer count (2-layer: 0.25/0.2mm, 0.6/0.3 via; 4/6-layer: 0.127/0.127mm, 0.35/0.2 via — JLCPCB scope); copper planes on inner layers with per-pad fanout vias; depth-staggered escape vias for every fine-pitch signal pin; keep-out zones from footprints honoured; **differential pairs first** as coupled corridors over a solid plane with matched lengths (fab-table cross-sections); **3W/5W crosstalk spacing enforced** for every fast net outside pad/escape breakouts; impedance nets at widths solved from the stackup, confined to plane-referenced layers; rip-up and reroute
 4. **Physics audit** — per-net frequency table; stray L/C measured from routed geometry; SWR vs targets; λ/20 stubs; unterminated transmission lines; crosstalk measured on the routed copper with the router's breakout zones; per-capacitor decoupling loop inductance; regulator/crystal/switch-node stability checks; per-rail PDN |Z(f)| vs target; thermal junction temps; JLCPCB fab-scope check
-5. **kicad-cli verification**: ERC, DRC with zones refilled (judged from the report file: errors and unconnected items fail, warnings are listed), Gerber set for every copper layer + mask/paste/silk/outline, drill + map, position file, BOM, top/bottom PNG renders
+5. **kicad-cli verification**: ERC, DRC with zones refilled (judged from the report file: errors and unconnected items fail, warnings are listed), Gerber set for every copper layer + mask/paste/silk/outline, drill + map, position file, kicad-cli BOM plus the detailed BOM (`fab/bom-detailed.csv`, `fab/bom.md`: qty, references, value, MPN, LCSC, package), the **JLCPCB order package** (`fab/jlcpcb/`: Gerber zip with Protel names and no X2, merged Excellon drill, assembly BOM and CPL with per-package rotation corrections — the build lists the corrections; check JLCPCB's SMT preview), and **3D renders with component bodies** (`render/board-iso.png`, top, bottom; the stage fails when a referenced 3D model is missing — fetch-libs is the fix)
 6. **The 6-gate export preflight** — DRC + shorts + unrouted + pours + Gerbers + drill; all six pass = orderable, anything else = NOT DONE, honestly
 
 Output lands in `./someda-build/` (override with `SOMEDA_PROJECT_DIR`): `circuit.kicad_sch`, `circuit.kicad_pcb`, `circuit.kicad_pro` (the rules kicad-cli judged by), `fab/` with Gerbers + drill + BOM + positions, `render/` with PNGs.

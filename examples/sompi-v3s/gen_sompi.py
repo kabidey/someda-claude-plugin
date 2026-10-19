@@ -158,7 +158,7 @@ net("PB3_LED", soc("PB3")); R("1k", "PB3_LED", "STAT_LED", near="D2")
 
 # --- USB-C: 5 V power in + USB 2.0 OTG ----------------------------------
 J1_FP = "Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12"
-comp("J1", "USB-C 16P", "Connector:USB_C_Receptacle_USB2.0_16P", J1_FP, position="top_edge", edge_at=0.30, rotation=opening_rotation(J1_FP, "top_edge"))
+comp("J1", "USB-C 16P", "Connector:USB_C_Receptacle_USB2.0_16P", J1_FP, position="top_edge", edge_at=0.30, mpn="TYPE-C-31-M-12", lcsc="C165948", edge_overhang_mm=0.8)
 for p in ("A1", "A12", "B1", "B12", "SH"): net("GND", f"J1:{p}")
 for p in ("A4", "A9", "B4", "B9"): net("VBUS_IN", f"J1:{p}", role="power")
 net("CC1", "J1:A5"); net("CC2", "J1:B5"); R("5.1k", "CC1", "GND", near="J1"); R("5.1k", "CC2", "GND", near="J1")
@@ -166,7 +166,7 @@ net("USB_DP_J", "J1:A6", "J1:B6"); net("USB_DM_J", "J1:A7", "J1:B7")
 comp("F1", "2A fuse", "Device:Polyfuse", "Fuse:Fuse_1206_3216Metric", near="J1"); net("VBUS_IN", "F1:1"); net("VBUS", "F1:2", role="power")
 C("10uF", "VBUS", "GND", near="F1", fp=C0805)
 # ESD array on the data lines (USBLC6-2SC6: 1/6 = I/O1, 3/4 = I/O2, 2 GND, 5 VBUS)
-comp("U8", "USBLC6-2SC6", "Power_Protection:USBLC6-2SC6", "Package_TO_SOT_SMD:SOT-23-6", near="J1")
+comp("U8", "USBLC6-2SC6", "Power_Protection:USBLC6-2SC6", "Package_TO_SOT_SMD:SOT-23-6", near="J1", mpn="USBLC6-2SC6")
 net("USB_DP_J", "U8:1"); net("USB_DP", "U8:6", soc("USB-DP"), freq_hz=480e6, role="highspeed")
 net("USB_DM_J", "U8:3"); net("USB_DM", "U8:4", soc("USB-DM"), freq_hz=480e6, role="highspeed")
 net("GND", "U8:2"); net("VBUS", "U8:5")
@@ -174,13 +174,13 @@ notes.append("USB D+/D- declared as 90 ohm differential pairs (J1-U8 and U8-U1):
 
 # --- 3V3 and 1V2 bucks: TPS562200 (1 GND, 2 SW, 3 VIN, 4 VFB, 5 EN, 6 VBST), 0.765 V FB
 def buck(ref, vout_name, r_top, r_bot, pos):
-    comp(ref, "TPS562200", "Regulator_Switching:TPS562200", "Package_TO_SOT_SMD:SOT-23-6", power_w=0.35, position=pos)
+    comp(ref, "TPS562200", "Regulator_Switching:TPS562200", "Package_TO_SOT_SMD:SOT-23-6", power_w=0.35, position=pos, mpn="TPS562200DDCR")
     net("GND", f"{ref}:1"); net("VBUS", f"{ref}:3", f"{ref}:5")
     sw, fb, bst = f"{ref}_SW", f"{ref}_FB", f"{ref}_BST"
     net(sw, f"{ref}:2", role="power"); net(fb, f"{ref}:4"); net(bst, f"{ref}:6")
     C("100nF", bst, sw, near=ref)
     rc["L"] += 1; lref = f"L{rc['L']}"
-    comp(lref, "4.7uH 3A", "Device:L", "Inductor_SMD:L_Taiyo-Yuden_NR-40xx", near=ref)
+    comp(lref, "4.7uH 3A", "Device:L", "Inductor_SMD:L_Taiyo-Yuden_NR-40xx", near=ref, mpn="NR4018T4R7M", lcsc="C92936")
     net(sw, f"{lref}:1"); net(vout_name, f"{lref}:2")
     C("10uF", "VBUS", "GND", near=ref, fp=C0805)
     C("22uF", vout_name, "GND", near=lref, fp=C0805); C("22uF", vout_name, "GND", near=lref, fp=C0805)
@@ -188,16 +188,16 @@ def buck(ref, vout_name, r_top, r_bot, pos):
 buck("U2", "+3V3", "33.2k 1%", "10k 1%", "bottom_right")  # 0.765*(1+33.2/10) = 3.30 V
 buck("U3", "+1V2", "5.62k 1%", "10k 1%", "bottom_right")  # 0.765*(1+5.62/10) = 1.195 V
 # 1V8 LDO (DRAM) and 3V0 LDO (AVCC / VCC-PLL) from 3V3
-comp("U4", "ME6211C18M5G", "Regulator_Linear:ME6211C18M5", "Package_TO_SOT_SMD:SOT-23-5", power_w=0.22)
+comp("U4", "ME6211C18M5G", "Regulator_Linear:ME6211C18M5", "Package_TO_SOT_SMD:SOT-23-5", power_w=0.22, mpn="ME6211C18M5G")
 net("+3V3", "U4:1", "U4:3"); net("GND", "U4:2"); net("+1V8", "U4:5", role="power")
 C("1uF", "+3V3", "GND", near="U4", fp=C0603); C("10uF", "+1V8", "GND", near="U4", fp=C0603)
-comp("U5", "XC6206P302MR", "Regulator_Linear:XC6206PxxxMR", "Package_TO_SOT_SMD:SOT-23", power_w=0.03)
+comp("U5", "XC6206P302MR", "Regulator_Linear:XC6206PxxxMR", "Package_TO_SOT_SMD:SOT-23", power_w=0.03, mpn="XC6206P302MR")
 net("GND", "U5:1"); net("+3V0", "U5:2", role="power"); net("+3V3", "U5:3")
 C("1uF", "+3V3", "GND", near="U5", fp=C0603); C("1uF", "+3V0", "GND", near="U5", fp=C0603)
 
 # --- Ethernet: internal PHY -> HR911105A magjack (1 TD+, 2 TD-, 3 RD+, 4 TCT, 5 RCT, 6 RD-, 8 GND, 9-12 LEDs, SH)
 J2_FP = "Connector_RJ:RJ45_Hanrun_HR911105A_Horizontal"
-comp("J2", "RJ45 HR911105A", "Connector:RJ45_Hanrun_HR911105A_Horizontal", J2_FP, position="right_edge", edge_at=0.32, rotation=opening_rotation(J2_FP, "right_edge"))
+comp("J2", "RJ45 HR911105A", "Connector:RJ45_Hanrun_HR911105A_Horizontal", J2_FP, position="right_edge", edge_at=0.32, mpn="HR911105A", lcsc="C12074")
 net("ETH_TXP", soc("EPHY_TXP"), "J2:1", freq_hz=125e6, role="highspeed"); net("ETH_TXN", soc("EPHY_TXN"), "J2:2", freq_hz=125e6, role="highspeed")
 net("ETH_RXP", soc("EPHY_RXP"), "J2:3", freq_hz=125e6, role="highspeed"); net("ETH_RXN", soc("EPHY_RXN"), "J2:6", freq_hz=125e6, role="highspeed")
 net("ETH_VCC", "J2:4", "J2:5", role="power"); net("GND", "J2:8", "J2:SH")
@@ -211,7 +211,7 @@ notes.append("Ethernet TX/RX declared as 100 ohm differential pairs, intra-pair 
 
 # --- microSD (SDC0): DM3AT 1 DAT2, 2 DAT3/CD, 3 CMD, 4 VDD, 5 CLK, 6 VSS, 7 DAT0, 8 DAT1, 9 DET_B, 10 DET_A, SH
 J3_FP = "Connector_Card:microSD_HC_Hirose_DM3AT-SF-PEJM5"
-comp("J3", "microSD", "Connector:Micro_SD_Card_Det_Hirose_DM3AT", J3_FP, position="top_edge", edge_at=0.58, rotation=opening_rotation(J3_FP, "top_edge"))
+comp("J3", "microSD", "Connector:Micro_SD_Card_Det_Hirose_DM3AT", J3_FP, position="top_edge", edge_at=0.58)
 sd = {"SD_D2": (soc("PF5"), "J3:1"), "SD_D3": (soc("PF4"), "J3:2"), "SD_CMD": (soc("PF3"), "J3:3"),
       "SD_D0": (soc("PF1"), "J3:7"), "SD_D1": (soc("PF0"), "J3:8")}
 for n, (a, b) in sd.items():
@@ -228,7 +228,7 @@ net("+3V3", "U6:3", "U6:7", "U6:8"); net("GND", "U6:4"); C("100nF", "+3V3", "GND
 
 # --- LCD: 40-pin 0.5 mm RGB TFT FPC (common 40P RGB pinout), 18-bit RGB666 from LCD_D2..D23
 J4_FP = "Connector_FFC-FPC:Hirose_FH12-40S-0.5SH_1x40-1MP_P0.50mm_Horizontal"
-comp("J4", "LCD 40P RGB", "Connector_Generic:Conn_01x40", J4_FP, position="left_edge", edge_at=0.5, rotation=opening_rotation(J4_FP, "left_edge"))
+comp("J4", "LCD 40P RGB", "Connector_Generic:Conn_01x40", J4_FP, position="left_edge", edge_at=0.5)
 lcd_pads = pads_of(J4_FP)
 net("LCD_LEDK", "J4:1"); net("VBUS", "J4:2"); net("GND", "J4:3", "J4:29", "J4:36"); net("+3V3", "J4:4")
 for p in sorted(lcd_pads - {str(i) for i in range(1, 41)}): net("GND", f"J4:{p}")   # MP shield pads
@@ -247,7 +247,7 @@ notes.append("LCD connector uses the common 40-pin 0.5 mm RGB TFT pinout (LEDK/L
 
 # --- camera: 24-pin 0.5 mm FPC carrying MIPI CSI-2 (2 lanes) + control (SomPi pinout)
 J5_FP = "Connector_FFC-FPC:Hirose_FH12-24S-0.5SH_1x24-1MP_P0.50mm_Horizontal"
-comp("J5", "CAM MIPI 24P", "Connector_Generic:Conn_01x24", J5_FP, position="right_edge", edge_at=0.78, rotation=opening_rotation(J5_FP, "right_edge"))
+comp("J5", "CAM MIPI 24P", "Connector_Generic:Conn_01x24", J5_FP, position="right_edge", edge_at=0.78)
 for p in sorted(pads_of(J5_FP) - {str(i) for i in range(1, 25)}): net("GND", f"J5:{p}")
 for p in (1, 4, 7, 10, 17, 19): net("GND", f"J5:{p}")
 # P on the lower-numbered pin of each pair: with the connector on the right edge this keeps the
@@ -265,7 +265,7 @@ notes.append("MIPI CSI-2 lanes declared as 100 ohm differential pairs, intra-pai
 
 # --- audio: 3.5 mm jack (capless headphone output with HPCOM virtual ground)
 J6_FP = "Connector_Audio:Jack_3.5mm_CUI_SJ-3523-SMT_Horizontal"
-comp("J6", "3.5mm jack", "Connector_Audio:AudioJack3", J6_FP, position="top_edge", edge_at=0.10, rotation=opening_rotation(J6_FP, "top_edge"))
+comp("J6", "3.5mm jack", "Connector_Audio:AudioJack3", J6_FP, position="top_edge", edge_at=0.10, mpn="SJ-3523-SMT", lcsc="C4991872")
 net("HP_L", soc("HPOUTL"), "J6:T", role="analog"); net("HP_R", soc("HPOUTR"), "J6:R", role="analog")
 net("HPCOM_OUT", "J6:S", role="analog"); net("HPCOM", soc("HPCOM")); net("HPCOMFB", soc("HPCOMFB"))
 R("22R", "HPCOM", "HPCOM_OUT", near="U1"); R("0R", "HPCOMFB", "HPCOM_OUT", near="U1"); C("100nF", "HPCOM_OUT", "GND", near="U1")

@@ -11,8 +11,9 @@ analog/PLL), reset and user keys, LEDs, four M2.5 holes. 90 x 60 mm, 6 layers
 ## Files
 
 - `gen_sompi.py` — writes `plan.json`. Every SoC pin is looked up BY NAME in the verified pin
-  table; a typo fails the script, never the copper. Connector rotations are derived from each
-  footprint's own geometry (pad centroid → courtyard centre = opening direction).
+  table; a typo fails the script, never the copper. It declares no connector rotations: the
+  engine turns each edge connector's opening (courtyard/fab overhang beyond the pads) toward its
+  edge and puts it on the edge (`edge_overhang_mm` 0.8 for the USB-C shell).
 - `plan.json` — the someda CircuitPlan: 132 components, 114 nets, 500 pins.
 - `lib/SomPi.pretty/eLQFP-128_…_EP5.72x5.72mm_ThermalVias.kicad_mod` — the stock KiCad LQFP-128
   plus the exposed pad (the V3s's only digital ground) with a 3x3 thermal via array. The EPAD
@@ -30,9 +31,20 @@ SOMEDA_FOOTPRINT_DIRS=$PWD/lib SOMEDA_PLAN_FILE=plan.json SOMEDA_PROJECT_DIR=out
   someda ai build "SomPi V3s 6-layer SBC"
 ```
 
-Result with someda 0.6.1 (2026-10-19): 192 of 192 connections routed, 220 plane fanouts,
-130 escape vias (32 unused), kicad-cli DRC 0 errors / 0 unconnected / 0 silkscreen findings,
-all six export gates pass, 13 Gerber layers in `out/fab/`. Full outputs in `evidence/`.
+Result with someda 0.7.0 (2026-10-19): 187 of 187 connections routed, 225 plane fanouts,
+104 escape vias (32 unused); 7 of 7 declared differential pairs routed as coupled pairs within
+their intra-pair skew budgets (USB 90 Ω: J1↔U8 skew −0.65 mm of 1.1, U8↔U1 +0.52 mm with a via
+crossover because its P/N order differs at the two ends; Ethernet 100 Ω ≤ 0.01 mm of 0.25; MIPI
+CSI-2 100 Ω 0.00 mm of 0.15; coupled 10–46 mm each, single-ended tails up to 10.5 mm); 0 crosstalk
+violations outside breakout zones; kicad-cli DRC 0 errors / 0 unconnected / 0 fab-blocking, all six
+export gates pass, 13 Gerber layers in `out/fab/` plus the JLCPCB order package in `out/fab/jlcpcb/`.
+The engine rotated every edge connector from its footprint geometry (USB-C shell 0.8 mm proud of
+the top edge, RJ45 and camera FPC on the right, LCD FPC on the left, headers on the bottom), moved
+the 3.5 mm jack to the bottom edge because the top edge had no 18 mm-deep slot left (two `repair:`
+lines), and grew the +1V8 island 4 mm to reach six of its capacitors. Full outputs, the per-pair
+table and the remaining warnings (crystal traces of 11–17 mm with vias, the camera connector's +1V8
+capacitor 23 mm from the island, three +1V8 capacitors beyond the island's 6 mm growth limit, board
+density 147 %) in `evidence/`.
 
 ## What "orderable" does not mean
 

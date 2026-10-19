@@ -20,7 +20,10 @@ The planner (Claude) writes this JSON. The engine validates it strictly, then ow
                                       //   bottom_left, bottom, bottom_right, or an edge:
                                       //   left_edge, right_edge, top_edge, bottom_edge
       "edge_at": 0.3,                 // optional, edges only: 0.0 = left/top end … 1.0 = right/bottom end
-      "rotation": 270,                // optional: 0/90/180/270, KiCad sense (CCW on screen)
+      "rotation": 270,                // optional: 0/90/180/270, KiCad sense (CCW on screen); edge
+                                      //   connectors need none — the engine turns the opening to the edge
+      "edge_overhang_mm": 0.8,        // optional, edges only: how far the BODY FRONT protrudes past the
+                                      //   board edge (USB-C shells); default 0 = courtyard on the edge
       "near": "U1"                    // optional: hug this reference, on the side of the pins they share
     }
   ],
@@ -66,14 +69,19 @@ The planner (Claude) writes this JSON. The engine validates it strictly, then ow
 - **Crosstalk is a routing constraint**: every net with a frequency or a clock/highspeed/rf role keeps the 3W rule (5W for rf, highspeed and ≥100 MHz clocks; W = the board's trace width) edge-to-edge from other nets' traces, except inside breakout zones (1 mm around pads, fine-pitch escape bands). The SI audit measures the routed board with the same zones and reports `crosstalk-violation` (error) outside them and `crosstalk-breakout` (info) inside.
 - **Oscillation checks** (`si-audit`, `stability-audit`, `pdn-audit` stages): `unterminated-line` (error) for an electrically long net with no termination; `decoupling-loop` per capacitor from its routed stubs and via pair (error above 6 nH at an IC, warning above 3 nH); regulator output capacitance vs datasheet minimum (TPS5622xx 10 µF, ME6211/XC6206 1 µF); crystal load capacitors and crystal trace length/vias; switch-node and feedback-node length; per-rail PDN |Z(f)| 100 kHz–1 GHz vs the ΔV/ΔI target. Terminated transmission lines are no longer flagged as LC self-resonances.
 
+## Outputs the build must end with
+
+Schematic (`circuit.kicad_sch` + `someda-symbols.kicad_sym` + `sym-lib-table`, on the smallest standard sheet that holds the column layout, KiCad ERC clean apart from the power-symbol note), board, Gerber set, drill, position file, kicad-cli BOM, the detailed BOM (`fab/bom-detailed.csv`, `fab/bom.md`: quantity, references, value, MPN, LCSC, package, footprint), and the renders `render/board-top.png`, `render/board-bottom.png`, `render/board-iso.png` with component bodies. The `render` stage fails when a referenced 3D model is missing — fetch-libs is the fix, not a plan edit.
+
 ## Footprints
 
 `footprint` is resolved to `<dir>/<Lib>.pretty/<Name>.kicad_mod` from `SOMEDA_FOOTPRINT_DIRS` (colon separated), `KICAD10_FOOTPRINT_DIR`…`KICAD7_FOOTPRINT_DIR`, then the standard install paths. The library definition is embedded verbatim in the board (silk, fab, courtyard, keep-outs, 3D model), with placement, reference, value and pad nets injected. Pad angles and zone polygons follow KiCad's conventions (verified against kicad-cli). Custom footprints (e.g. an exposed-pad variant) go in your own `.pretty` directory on `SOMEDA_FOOTPRINT_DIRS`.
 
 ## Placement
 
-- `position` edges put the courtyard flush to that edge, sliding along it from `edge_at` to the first free slot; semantic positions spiral out from their slot
-- Everything else is placed in connectivity order at the free spot nearest the centroid of its already-placed neighbours; `near` aims at the anchor's pads that share a net with the part (a 1V8 cap goes to the 1V8 pins)
+- `position` edges put the courtyard on that edge (0.5 mm margin, or protruding by `edge_overhang_mm`), rotated so the footprint's opening (courtyard/fab overhang beyond the pads) faces outward, sliding along the edge from `edge_at` to the first free slot; a connector with no room on its edge is moved to an adjacent edge, re-oriented, and the board re-placed (`repair:` line); one that fits no edge fails the placement stage. Semantic positions spiral out from their slot
+- Order: mounting holes (no nets) at their exact corners, the `center` part, edge connectors largest first, other positions, then everything else — a fine-pitch connector's escape ring applies only on its inward side
+- Everything else is placed in connectivity order at the free spot nearest the centroid of its already-placed neighbours; `near` aims at the anchor's pads that share a net with the part (a 1V8 cap goes to the 1V8 pins, also when 1V8 is a plane). A split-plane island (`planes[].region` rectangle or `"auto"` with a `priority`) grows up to 6 mm per side to cover the rail pads of capacitors placed at its IC (`repair:` line); capacitors farther out are a `suggest:` line
 - Real courtyards never overlap (0.6mm gap, 0.5mm board margin); fine-pitch ICs get a 3.6mm keep-out ring for escape vias; parts ≥0.5W keep ≥15mm apart
 
 ## Frequency awareness
