@@ -3,8 +3,8 @@
 **Describe a circuit; get a fab-ready KiCad project with every claim checked.**
 
 This plugin puts the [someda](https://github.com/kabidey/someda) engine behind three slash
-commands. In a conversation, Claude writes the circuit as a small JSON plan — real parts with
-datasheet pinouts, nets, intent such as "USB-C on the top edge" — and never a coordinate. The
+commands. In a conversation, Claude writes the circuit as a small JSON plan: real parts with
+datasheet pinouts, nets, and intent such as "USB-C on the top edge". Never a coordinate. The
 compiled engine does the rest: schematic, footprints, placement, routing (differential pairs,
 enforced crosstalk spacing), signal-integrity / stability / thermal audits, KiCad's own ERC and
 DRC, Gerbers, drill, BOM, a JLCPCB order package and 3D renders. The build ends with six gates;
@@ -38,8 +38,8 @@ a desktop window that does the whole flow with any language model provider (see 
 
 ```
 you:     /pcb-plan a 555 timer blinking an LED at about 1 Hz, 5 V in on a header
-claude:  writes plan.json — NE555, timing RC, LED + resistor, 100 nF next to the 555,
-         a 2-pin header on the left edge — and shows it for review
+claude:  writes plan.json (NE555, timing RC, LED and resistor, 100 nF next to the 555,
+         a 2-pin header on the left edge) and shows it for review
 
 you:     /pcb-build 555 LED blinker
 claude:  1. schematic written and exported to PDF for your approval
@@ -95,8 +95,8 @@ when the top edge had no slot deep enough, and grew the 1.8 V plane island to re
 capacitors. Its remaining warnings are real and listed (crystal traces of 11–17 mm, one far
 capacitor, three capacitors beyond the island, board density 147 %).
 
-The unedited outputs of that build — Gerbers, KiCad project, DRC/ERC reports, schematic PDF,
-renders, BOM, JLCPCB package, checksums — are in
+The unedited outputs of that build (Gerbers, KiCad project, DRC and ERC reports, schematic PDF,
+renders, BOM, JLCPCB package, checksums) are in
 [examples/sompi-v3s/evidence](examples/sompi-v3s/evidence).
 
 ![SomPi-V3s isometric render](examples/sompi-v3s/evidence/render/board-iso.png)
@@ -112,7 +112,7 @@ top side. Read the warnings; they are the engine telling you what it could not m
 
 ```
 commands/            pcb-plan, pcb-build, pcb-check
-skills/someda/       SKILL.md — how Claude plans and runs a build; references/CONTRACT.md — the plan
+skills/someda/       SKILL.md: how Claude plans and runs a build; references/CONTRACT.md: the plan
 scripts/             setup-someda.sh (engine + libraries), fetch-libs.py (footprints and 3D models)
 examples/sompi-v3s/  the SBC plan, its generator, design notes and build evidence
 ```
